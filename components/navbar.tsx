@@ -1,4 +1,6 @@
 'use client';
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2"; // Import SweetAlert2
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -22,6 +24,29 @@ import { FaInstagram } from "react-icons/fa6";
 import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
+  const router = useRouter(); // Use useRouter to programmatically navigate
+
+  const handleLogout = (event: React.MouseEvent) => {
+    event.preventDefault(); // Prevent default link behavior
+
+    // Show SweetAlert confirmation dialog
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, logout",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem("sihmail"); // Clear localStorage
+
+        // Redirect to login page after logout
+        router.push("/login"); // Using Next.js router for navigation
+      }
+    });
+  };
+
   return (
     <NextUINavbar
       maxWidth="xl"
@@ -68,15 +93,28 @@ export const Navbar = () => {
       <ul className="hidden lg:flex gap-4 justify-start ml-2">
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href}>
-            <NextLink
-              className={clsx(
-                "text-black transition-all duration-300 hover:text-primary hover:font-medium",
-                "data-[active=true]:text-primary data-[active=true]:font-medium"
-              )}
-              href={item.href}
-            >
-              <span className="text-base sm:text-lg">{item.label}</span>
-            </NextLink>
+            {item.label === "Logout" ? (
+              <a
+                href="#"
+                onClick={handleLogout}  // Attach the logout handler here
+                className={clsx(
+                  "text-black transition-all duration-300 hover:text-primary hover:font-medium",
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                )}
+              >
+                <span className="text-base sm:text-lg">{item.label}</span>
+              </a>
+            ) : (
+              <NextLink
+                className={clsx(
+                  "text-black transition-all duration-300 hover:text-primary hover:font-medium",
+                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                )}
+                href={item.href}
+              >
+                <span className="text-base sm:text-lg">{item.label}</span>
+              </NextLink>
+            )}
           </NavbarItem>
         ))}
       </ul>
@@ -94,9 +132,19 @@ export const Navbar = () => {
                 : ""
             )}
           >
-            <NextLink href={item.href}>
-              <span className="text-base">{item.label}</span>
-            </NextLink>
+            {item.label === "Logout" ? (
+              <a
+                href="#"
+                onClick={handleLogout}  // Attach the logout handler here
+                className="text-base"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <NextLink href={item.href}>
+                <span className="text-base">{item.label}</span>
+              </NextLink>
+            )}
           </NavbarMenuItem>
         ))}
       </NavbarMenu>

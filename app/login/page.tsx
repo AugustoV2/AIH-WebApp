@@ -54,14 +54,14 @@ export default function App() {
         className="absolute top-0 left-0 w-full h-1/3 bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('https://envs.sh/1rN.png')",
-          backgroundSize: "100%", // Default size for smaller screens
+          backgroundSize: "100%", 
         }}
       >
-        {/* Background for large screens */}
+        
         <div
           className="lg:bg-[40%]"
           style={{
-            backgroundSize: "100%", // Default for mobile
+            backgroundSize: "100%", 
           }}
         />
       </div>
@@ -72,7 +72,7 @@ export default function App() {
           backgroundColor: "rgba(255, 255, 255, 0.8)",
           borderRadius: "12px",
           zIndex: 10,
-          marginTop: "100px", // Reduced margin for smaller screens
+          marginTop: "100px", 
         }}
       >
         <div className="flex flex-col items-center gap-4">
@@ -93,8 +93,8 @@ export default function App() {
               type="email"
               className="text-xl font-bold"
               style={{
-                color: "black",  // Text color inside input
-                backgroundColor: "white",  // White background for input
+                color: "white", 
+                backgroundColor: "white",  
               }}
             />
 
@@ -108,8 +108,8 @@ export default function App() {
               type="password"
               className="text-black"
               style={{
-                color: "black",  // Text color inside input
-                backgroundColor: "white",  // White background for input
+                color: "white",  
+                backgroundColor: "white",  
               }}
             />
 
