@@ -1,7 +1,11 @@
-import { PrismaClient } from "@prisma/client";
+import { MongoClient } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
+const databaseUrl = process.env.DATABASE_URL;
+if (!databaseUrl) {
+  throw new Error("DATABASE_URL environment variable is not defined");
+}
+const client = new MongoClient(databaseUrl); // MongoDB connection URL
 
 export async function GET(request: NextRequest) {
   try {
@@ -15,9 +19,14 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Connect to the database
+    await client.connect();
+    const database = client.db(); // Default database
+    const participantsCollection = database.collection("participants");
+
     // Find participant by mailId
-    const participant = await prisma.participants.findUnique({
-      where: { mailId: email },
+    const participant = await participantsCollection.findOne({
+      mailId: email,
     });
 
     // Handle case where participant is not found
@@ -29,7 +38,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Respond with the participant details
-    return NextResponse.json({ participant }, { status: 200 });
+    return NextResponse.json({ participant: participant }, { status: 200 });
   } catch (error) {
     console.error("Error fetching participant details:", error);
     return NextResponse.json(
@@ -37,6 +46,6 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   } finally {
-    await prisma.$disconnect();
+    await client.close(); // Close the connection to the database
   }
 }
