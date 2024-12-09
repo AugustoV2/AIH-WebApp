@@ -2,7 +2,8 @@
 import React, { use, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Mainpage from "../components/mainpage";
-import Login from "../components/login";
+import Login from "./login/page";
+
 
 const MainPage = () => {
   const router = useRouter();
@@ -19,7 +20,7 @@ const MainPage = () => {
 
   return (
     <>
-      <Login/>
+      <Login />
       {/*   */}
     </>
   );
