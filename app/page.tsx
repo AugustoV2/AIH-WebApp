@@ -5,8 +5,8 @@ import Mainpage from '../components/mainpage'
 const MainPage = () => {
   return (
     <>
-      {/* <Login/> */}
-      <Mainpage/>
+      <Login/>
+      {/*   */}
     </>
   )
 }
