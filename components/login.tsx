@@ -50,7 +50,7 @@ export default function App() {
 
       if (res.data && res.data.isFormFilled === false) {
         
-        console.log("Form not filled. Disabling sidebar.");
+        
       }
     } catch (error) {
       console.error("Error fetching user data:", error);

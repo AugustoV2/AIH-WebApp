@@ -1,12 +1,13 @@
 import React from 'react'
 import Login from '../components/login'
+import Mainpage from '../components/mainpage'
 
 const MainPage = () => {
   return (
-    <div>
-      <Login/>
-      
-    </div>
+    <>
+      {/* <Login/> */}
+      <Mainpage/>
+    </>
   )
 }
 

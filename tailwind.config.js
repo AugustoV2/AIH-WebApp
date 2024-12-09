@@ -8,6 +8,7 @@ module.exports = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
+    light: {},
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)"],
@@ -15,6 +16,29 @@ module.exports = {
       },
     },
   },
-  darkMode: "class",
-  plugins: [nextui()],
+ 
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: "#FFFFFF", // Set primary color to white
+            background: "rgb(255, 255, 255)", // Set background to white
+            text: "#000000", // Set text color to black for better contrast
+            focus: "#BEF264", // Highlight color for focused elements (optional)
+          },
+        },
+        dark: {
+          colors: {
+            primary: "#FFFFFF", // Set primary color to white
+            background: "rgb(255, 255, 255)", // Set background to white for dark mode (if desired)
+            text: "#000000", // Set text color to black
+            focus: "#BEF264", // Highlight color for focused elements (optional)
+          },
+        },
+      },
+    }),
+  ]
+  
+
 }
