@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { RiTeamFill } from "react-icons/ri";
 import { IoIosPerson } from "react-icons/io";
@@ -18,6 +18,22 @@ import { Navbar } from "@/components/navbar";
 const Profile = () => {
     // State to manage which modal is open
     const [activeModal, setActiveModal] = useState<number | null>(null);
+    const [userDetails, setUserDetails] = useState<any>(null);
+
+    // Handle API call to fetch user details based on email
+    useEffect(() => {
+        const email = localStorage.getItem('sihmail'); // Get the email from localStorage
+        if (email) {
+            fetch(`/api/details?email=${email}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    setUserDetails(data.participant); // Save the user data from the API
+                })
+                .catch((error) => {
+                    console.error("Error fetching user details:", error);
+                });
+        }
+    }, []);
 
     const handleOpenModal = (modalIndex: number) => {
         setActiveModal(modalIndex);
@@ -33,18 +49,29 @@ const Profile = () => {
             icon: <IoIosPerson className='size-20' />,
             bg: 'bg-gradient-to-r from-purple-400 via-pink-500 to-red-500',
             content: 'Details about My Slots.',
+            modalContent: userDetails ? {
+                name: userDetails.name,
+                mailId: userDetails.mailId,
+                mobileNumber: userDetails.mobileNumber,
+                participantId: userDetails.participantId
+            } : null,
         },
         {
             title: 'Team Details',
-            icon: <RiTeamFill   className='size-20'/>,
+            icon: <RiTeamFill className='size-20' />,
             bg: 'bg-gradient-to-r from-blue-400 to-blue-600',
             content: 'Details about My Meetings.',
+            modalContent: userDetails ? {
+                teamId: userDetails.teamId,
+                teamName: userDetails.teamName,
+            } : null,
         },
         {
             title: 'QR Code',
-            icon: <FaQrcode  className='size-20'/>,
+            icon: <FaQrcode className='size-20' />,
             bg: 'bg-gradient-to-r from-blue-400 to-blue-600',
             content: 'Details about My Meetings.',
+            modalContent: null,
         },
     ];
 
@@ -65,15 +92,14 @@ const Profile = () => {
                     />
                     <div className="text-left">
                         <h1 className="text-3xl font-bold text-blue-800 hover:text-blue-600 transition-colors duration-300">
-                            Name
+                            {userDetails ? userDetails.name : 'Loading...'}
                         </h1>
-                        <p className="text-gray-700 text-lg">hi@gmail.com</p>
-                        <p className="text-gray-700 text-lg">4567834343</p>
+                        <p className="text-gray-700 text-lg">{userDetails ? userDetails.mailId : 'Loading...'}</p>
+                        <p className="text-gray-700 text-lg">{userDetails ? userDetails.mobileNumber : 'Loading...'}</p>
                     </div>
                 </div>
             </header>
 
-        
             <nav className="flex-grow flex items-center justify-center">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
                     {cards.map((item, index) => (
@@ -105,8 +131,6 @@ const Profile = () => {
                 </div>
             </nav>
 
-
-
             {/* Modals */}
             {cards.map((item, index) => (
                 <Modal
@@ -121,7 +145,17 @@ const Profile = () => {
                                     {item.title}
                                 </ModalHeader>
                                 <ModalBody>
-                                    <p className="text-gray-700">{item.content}</p>
+                                    {item.modalContent ? (
+                                        <div>
+                                            {Object.entries(item.modalContent).map(([key, value]) => (
+                                                <p key={key} className="text-gray-700">
+                                                    <strong>{key.replace(/([A-Z])/g, ' $1')}:</strong> {value}
+                                                </p>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p className="text-gray-700">{item.content}</p>
+                                    )}
                                 </ModalBody>
                                 <ModalFooter>
                                     <Button color="danger" variant="light" onPress={onClose}>
