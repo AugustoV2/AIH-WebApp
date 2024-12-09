@@ -10,6 +10,7 @@ import {
     Button,
     useDisclosure,
 } from "@nextui-org/react";
+import { Navbar } from "@/components/navbar";
 
 const ContactUs = () => {
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -22,6 +23,8 @@ const ContactUs = () => {
     };
 
     return (
+        <>  
+        <Navbar/>
         <div className="flex flex-col items-start mt-10 px-14 w-full">
 
             <img
@@ -148,6 +151,7 @@ const ContactUs = () => {
                 </ModalContent>
             </Modal>
         </div>
+        </>
     );
 };
 
