@@ -78,6 +78,7 @@ export default function App() {
               labelPlacement="outside"
               name="email"
               placeholder="Enter your email"
+              
               type="email"
             />
 
