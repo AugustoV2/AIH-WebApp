@@ -2,6 +2,7 @@
 import React, { use, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Mainpage from "../components/mainpage";
+import Login from "../components/login";
 
 const MainPage = () => {
   const router = useRouter();
