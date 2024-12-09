@@ -14,15 +14,20 @@ import {
 } from '@nextui-org/react';
 import { Navbar } from "@/components/navbar";
 import { QRCode } from 'react-qrcode-logo';  // Import QRCode component correctly
+import { useRouter } from 'next/navigation';
 
 const Profile = () => {
     // State to manage which modal is open
     const [activeModal, setActiveModal] = useState<number | null>(null);
     const [userDetails, setUserDetails] = useState<any>(null);
+    const router = useRouter();
 
     // Handle API call to fetch user details based on email
     useEffect(() => {
         const email = localStorage.getItem('sihmail'); // Get the email from localStorage
+        if(!email) {
+            router.push('/login'); // Redirect to login page if email is not found
+        }
         if (email) {
             fetch(`/api/details?email=${email}`)
                 .then((response) => response.json())
