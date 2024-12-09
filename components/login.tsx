@@ -33,31 +33,31 @@ export default function App() {
     }
   };
 
-  const disableSideBarIfFormIsNotFilled = async () => {
-    try {
-      const email = localStorage.getItem("email");
+  // const disableSideBarIfFormIsNotFilled = async () => {
+  //   try {
+  //     const email = localStorage.getItem("email");
 
-      if (!email) {
-        console.warn("Email not found in local storage.");
-        return;
-      }
+  //     if (!email) {
+  //       console.warn("Email not found in local storage.");
+  //       return;
+  //     }
 
-      // GET request to fetch user data
-      const response = await axios.get<{ isFormFilled: boolean }>("/api/login", {
-        params: { email },
-      });
+  //     // GET request to fetch user data
+  //     const response = await axios.get<{ isFormFilled: boolean }>("/api/login", {
+  //       params: { email },
+  //     });
 
-      if (response.data && response.data.isFormFilled === false) {
-        console.log("Form not filled. Disabling sidebar.");
-      }
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-  };
+  //     if (response.data && response.data.isFormFilled === false) {
+  //       console.log("Form not filled. Disabling sidebar.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching user data:", error);
+  //   }
+  // };
 
-  React.useEffect(() => {
-    disableSideBarIfFormIsNotFilled();
-  }, []);
+  // React.useEffect(() => {
+  //   disableSideBarIfFormIsNotFilled();
+  // }, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen">
