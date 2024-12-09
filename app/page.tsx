@@ -20,7 +20,8 @@ const MainPage = () => {
 
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      <MainPage />
       
     </>
   );
