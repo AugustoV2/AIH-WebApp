@@ -1,133 +1,66 @@
-'use client'
-import React from 'react';
-import { Card } from '@nextui-org/react';
-import { Grid, Typography as Text, Box as Row, Container as Col } from '@mui/material';
-import Image from 'next/image';
+import React from 'react'
+import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
+import Link from "next/link";
+import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 
-const WhatIsSIH: React.FC = () => {
-    return (
-        <>
-        <Navbar />
-       
-        <section style={{ padding: '2rem 1rem' }}>
-             <style jsx global>{`
-                /* Hide scrollbar */
-                .scrollable-images::-webkit-scrollbar {
-                    display: none; /* Hides the scrollbar */
-                }
+const mainpage = () => {
+  return (
+    <> 
+    <Navbar/>
+    <section className="lg:py-16 ">
+      <div className="grid grid-cols-1 sm:grid-cols-12">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+          className="col-span-1 sm:col-span-7 place-self-center text-center sm:text-left justify-self-start px-6 sm:px-12"
+        >
+          <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-red-600">
+              Welcome,Name{" "}
+            </span>
+            <br />
+            <TypeAnimation
+              className="text-black font-semibold"
+              sequence={[
+                "To Amal Jyothi College ",
+                10000,
+                "Where Innovation Meets Excellence",
+                10000,
+              ]}
+              wrapper="span"
+              speed={60}
+              repeat={Infinity}
+            />
+          </h1>
+          <p className="text-black text-base sm:text-lg mb-6 lg:text-xl leading-relaxed">
+            Welcome to Amal Jyothi College of Engineering, Kerala’s one and only NAAC A++ grade engineering college. 
+            Our college is a hub of innovation, education, and excellence. Join us to explore your potential and 
+            make a difference in the world.
+          </p>
+          
+        </motion.div>
+        <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
+          <motion.div
+            initial={{ opacity: 0, rotate: 45 }}
+            animate={{ opacity: 1, rotate: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Image
+              src="https://envs.sh/1r2.png"
+              alt="College Image"
+              width={350}
+              height={350}
+              className="rounded-lg shadow-xl object-cover"
+            />
+          </motion.div>
+        </div>
+      </div>
+    </section>
+    </>
+  )
+}
 
-                /* Enable smooth scrolling */
-                .scrollable-images {
-                    -ms-overflow-style: none;  /* For Internet Explorer */
-                    scrollbar-width: none;  /* For Firefox */
-                    overflow-x: auto; /* Enables scrolling */
-                    white-space: nowrap; /* Prevents wrapping to the next line */
-                    WebkitOverflowScrolling: 'touch'; /* Smooth scrolling on touch devices */
-                    padding-bottom: 1rem; /* Optional padding for visual effect */
-                }
-            `}</style>
-
-            <Grid container spacing={3}>
-
-                <Grid item xs={12}>
-                    <Card style={{ padding: '1.5rem', borderRadius: '12px', boxShadow: '0 8px 15px rgba(0, 0, 0, 0.1)', background: 'rgb(255, 246, 238)' }}>
-                        <Text variant="h3" style={{ fontWeight: 'bold', marginBottom: '1rem', color: 'rgb(0, 36, 73)' }}>WHAT IS SIH?</Text>
-                        <Text variant="body1" style={{ marginBottom: '1rem', color: 'rgb(0, 36, 73)' }}>
-                            Smart India Hackathon (SIH) is a premier nationwide initiative designed to engage students in solving some of the most pressing challenges faced in everyday life. Launched to foster a culture of innovation and practical problem-solving, SIH provides a dynamic platform for students to develop and showcase their creative solutions to real-world problems.
-                        </Text>
-                        <Text variant="body1" style={{ marginBottom: '1.5rem', color: 'rgb(0, 36, 73)' }}>
-                            Since its inception, SIH has garnered significant success in promoting out-of-the-box thinking among young minds, particularly engineering students from across India. Each edition has built on the previous one, refining its approach and expanding its impact. The hackathon not only offers students an opportunity to showcase their skills but also encourages collaboration with industry experts, government agencies, and other stakeholders.
-                        </Text>
-                    </Card>
-                </Grid>
-
-                <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-
-                    <iframe
-                        width="60%" // Adjust width to ensure the video takes up the required space
-                        height="250"
-                        src="https://www.youtube.com/embed/0ZYG_zz2aoI"
-                        title="SIH 2024"
-                        style={{ borderRadius: '8px' }}
-                    />
-                    <img
-                        src="https://envs.sh/14a.png" // Replace with your image URL
-                        alt="SIH Image"
-                        style={{
-                            marginLeft: '1rem', // Small gap between video and image
-                            width: '500px', // Adjust image size as needed
-                            height: 'auto', // Maintain image aspect ratio
-                            borderRadius: '8px',
-                        }}
-                    />
-
-                </Grid>
-
-            </Grid >
-
-            <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}>
-                <Card
-                    style={{
-                        padding: '2rem', // Added more padding for a cleaner look
-                        borderRadius: '12px',
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        alignItems: 'center',
-                        width: '80%', // Ensures it doesn't take full width
-                        backgroundColor: 'transparent', // Transparent background
-                    }}
-                >
-                    <Text variant="h4" style={{ fontWeight: 'bold', marginTop: '1rem', color: 'rgb(0, 36, 73)', marginBottom: '1rem' }}>
-                        Timeline
-                    </Text>
-                    <div style={{
-                        display: 'flex',
-                        gap: '1rem',
-                        overflowX: 'scroll', // Enables scrolling
-                        whiteSpace: 'nowrap', // Prevents wrapping to the next line
-                        paddingBottom: '1rem', // Optional padding for visual effect
-                        WebkitOverflowScrolling: 'touch', // Smooth scrolling on touch devices
-                    }}>
-                        <img
-                            src="https://envs.sh/1UZ.jpg" // Replace with your image URL
-                            alt="SIH Image"
-                            style={{
-                                width: '500px', // Adjust image size as needed
-                                height: 'auto', // Maintain image aspect ratio
-                                borderRadius: '8px',
-                                display: 'inline-block', // Keeps images in a horizontal line
-                                flexShrink: 0, // Prevents images from shrinking
-                            }}
-                        />
-                        <img
-                            src="https://envs.sh/1U5.jpg" // Replace with your image URL
-                            alt="SIH Image"
-                            style={{
-                                width: '500px', // Adjust image size as needed
-                                height: 'auto', // Maintain image aspect ratio
-                                borderRadius: '8px',
-                                display: 'inline-block', // Keeps images in a horizontal line
-                                flexShrink: 0, // Prevents images from shrinking
-                            }}
-                        />
-                        {/* Add more images as needed */}
-                    </div>
-                </Card>
-            </Grid>
-
-
-
-
-
-
-
-
-
-        </section >
-     
-        </>
-    );
-};
-
-export default WhatIsSIH;
+export default mainpage;

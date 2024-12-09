@@ -28,7 +28,7 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <img
-                src="https://envs.sh/17I.jpg" 
+                src="https://envs.sh/1J1.png" 
               alt="SIH-2024"
               className="w-10 h-10 rounded-full"
             />
@@ -68,28 +68,8 @@ export const Navbar = () => {
         <NavbarMenuToggle />
       </NavbarContent>
 
-      <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                href="#"
-                size="lg"
-                className="!text-black hover:text-primary transition-all duration-300"
-              >
-                <span className="text-base sm:text-lg">{item.label}</span>
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </div>
-      </NavbarMenu>
+      
+     
     </NextUINavbar>
   );
 };

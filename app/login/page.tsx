@@ -8,13 +8,10 @@ export default function App() {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    
     const isFirstVisit = localStorage.getItem("visited") === null;
 
     if (isFirstVisit) {
-      
       localStorage.clear();
-      
       localStorage.setItem("visited", "true");
     }
 
@@ -28,7 +25,6 @@ export default function App() {
     const formData = Object.fromEntries(new FormData(e.currentTarget as HTMLFormElement));
 
     try {
-      // POST request to login API
       const response = await axios.post("/api/login", formData);
 
       if (response.status === 200) {
@@ -48,36 +44,34 @@ export default function App() {
     <div
       className="relative flex justify-center items-center min-h-screen"
       style={{
-        backgroundImage: "url('https://envs.sh/1k8.png')", // Main background image
-
+        backgroundImage: "url('https://envs.sh/1k8.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Overlapping image */}
+      
       <div
         className="absolute top-0 left-0 w-full h-1/3"
         style={{
-          backgroundImage: "url('https://envs.sh/1ky.png')", // Replace with the overlapping image URL
-          backgroundSize: "50%",
+          backgroundImage: "url('https://envs.sh/1ky.png')", 
+          backgroundSize: "100%",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
         }}
       ></div>
 
-      {/* Login card */}
       <Card
         className="w-full max-w-md p-6 shadow-lg"
         style={{
           backgroundColor: "rgba(255, 255, 255, 0.8)",
           borderRadius: "12px",
           zIndex: 10,
-          marginTop: "250px",
+          marginTop: "100px", // Reduced margin for smaller screens
         }}
       >
-        <div className="flex flex-col items-center gap-4 text-black">
-          <h1 className="text-xl font-bold text-black ">Login</h1>
+        <div className="flex flex-col items-center gap-4">
+          <h1 className="text-xl font-bold text-black">Login</h1>
           <Form
             className="flex flex-col gap-4 w-full"
             validationBehavior="native"
@@ -94,8 +88,8 @@ export default function App() {
               type="email"
               className="text-xl font-bold"
               style={{
-                // For the input text
-                color: "black",
+                color: "black",  // Text color inside input
+                backgroundColor: "white",  // White background for input
               }}
             />
 
@@ -109,17 +103,16 @@ export default function App() {
               type="password"
               className="text-black"
               style={{
-                color: "black",
+                color: "black",  // Text color inside input
+                backgroundColor: "white",  // White background for input
               }}
             />
 
-            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+            {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
 
-            <div className="flex gap-3 justify-center">
-              <Button type="submit">Submit</Button>
-              <Button type="reset" variant="flat">
-                Reset
-              </Button>
+            <div className="flex flex-col gap-3 sm:flex-row sm:gap-6 justify-center">
+              <Button type="submit" className="w-full sm:w-auto">Submit</Button>
+              <Button type="reset" variant="flat" className="w-full sm:w-auto">Reset</Button>
             </div>
           </Form>
         </div>

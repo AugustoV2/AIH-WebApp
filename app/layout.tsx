@@ -7,7 +7,7 @@ import { Providers } from "./providers";
 
 import { siteConfig as importedSiteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
-
+import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
   title: {
@@ -41,7 +41,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+        <Providers themeProps={{ attribute: "class", defaultTheme: "white" }}>
           <div className="relative flex flex-col h-screen">
             
             <main className="">
