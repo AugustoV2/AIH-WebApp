@@ -33,7 +33,7 @@ export default function App() {
 
       if (response.status === 200) {
         setAction("login-success");
-        localStorage.setItem("email", formData.email as string);
+        localStorage.setItem("sihmail", formData.email as string);
       } else if (response.status === 404) {
         const data = response.data as { error?: string };
         setErrorMessage(data.error || "Login failed");
