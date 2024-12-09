@@ -25,20 +25,20 @@ const ContactUs = () => {
             <Navbar />
             <div className="flex flex-col items-center mt-10 px-6 sm:px-14 w-full">
 
-                {/* Image for Contact Us */}
+               
                 <img
                     src="https://envs.sh/1rN.png"
                     alt="Support"
                     className="w-40 sm:w-60 h-auto mb-8"
                 />
 
-                {/* Title and Description */}
+               
                 <h1 className="text-4xl sm:text-7xl text-black mb-4 text-center">Hi, how can we help?</h1>
                 <p className="text-lg sm:text-2xl text-black text-center mt-5 mb-8 max-w-3xl">
-                    Have questions or need to report an issue with a SIH? We're here to help you! Let us know how we can assist you.
+                Have questions or need assistance with SIH? We're here to help! Reach out and let us know how we can assist you.
                 </p>
 
-                {/* Button Container - Stacked for mobile */}
+               
                 <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                     <Button
                         onPress={() => openModalWithContent('Registration')}
@@ -95,6 +95,7 @@ const ContactUs = () => {
                                     {modalContent === 'Food Committee-Regular' && (
                                         <div>
                                             <p className="text-black">For regular food committee inquiries, please contact:</p>
+
                                             <p className="text-black mt-4">Anwar: +91 NIL.</p>
                                             <p className="text-black">Augustin: +91 NIL.</p>
                                             <p className="text-black">Nandana LP: +91 NIL.</p>
@@ -105,27 +106,30 @@ const ContactUs = () => {
                                     {modalContent === 'Food Committee-VIP' && (
                                         <div>
                                             <p className="text-black">For VIP food committee, please contact:</p>
+
                                             <p className="text-black mt-4">Akshay: NIL</p>
-                                            <p className="text-black mt-4">Deon Berchmans: NIL</p>
+                                            <p className="text-black">Deon Berchmans: NIL</p>
                                             <p className="text-black">Adithya b dev: NIL</p>
                                         </div>
                                     )}
                                     {modalContent === 'Accommodation' && (
                                         <div>
                                             <p className="text-black">For accommodation inquiries, please contact:</p>
-                                            <p className="text-black mt-4">ALAN JOSEPH(lead): NIL.</p>
+
+                                            <p className="text-black mt-4 ">ALAN JOSEPH(lead): NIL.</p>
                                             <p className="text-black">Saveo Biju: NIL.</p>
-                                            <p className="text-black mt-4">Alan jimmy: +91 9539909336.</p>
-                                            <p className="text-black mt-4">Kevin George: +91 8281651978.</p>
+                                            <p className="text-black ">Alan jimmy: +91 9539909336.</p>
+                                            <p className="text-black ">Kevin George: +91 8281651978.</p>
                                             <p className="text-black">Juan: +91 9747396408.</p>
-                                            <p className="text-black mt-4">Don johns: +91 8891554693.</p>
-                                            <p className="text-black mt-4">Aadhi lakshmi (LEAD): NIL</p>
+                                            <p className="text-black ">Don johns: +91 8891554693.</p>
+                                            <p className="text-black ">Aadhi lakshmi (LEAD): NIL</p>
                                             <p className="text-black">Adona: NIL</p>
                                         </div>
                                     )}
                                     {modalContent === 'Travel' && (
                                         <div>
                                             <p className="text-black">For accommodation inquiries, please contact:</p>
+
                                             <p className="text-black mt-4">Ashirvad: NIL.</p>
                                             
                                         </div>
@@ -133,6 +137,7 @@ const ContactUs = () => {
                                     {modalContent === 'Reports & Certificate' && (
                                         <div>
                                             <p className="text-black">For accommodation inquiries, please contact:</p>
+
                                             <p className="text-black mt-4">Neha: NIL.</p>
                                             
                                         </div>
@@ -140,6 +145,7 @@ const ContactUs = () => {
                                     {modalContent === 'Technical' && (
                                         <div>
                                             <p className="text-black">For accommodation inquiries, please contact:</p>
+
                                             <p className="text-black mt-4">NIL: NIL.</p>
                                             
                                         </div>
@@ -147,8 +153,9 @@ const ContactUs = () => {
                                     {modalContent === 'Program Commitee' && (
                                         <div>
                                             <p className="text-black">For accommodation inquiries, please contact:</p>
+
                                             <p className="text-black mt-4">Alan Thomas Shaji (lead): NIL.</p>
-                                            <p className="text-black mt-4">Aswin MS: +91 8891554693.</p>
+                                            <p className="text-black ">Aswin MS: +91 8891554693.</p>
                                             
                                             <p className="text-black">Athul P Shibu: NIL</p>
                                             

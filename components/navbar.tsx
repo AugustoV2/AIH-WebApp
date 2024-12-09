@@ -24,12 +24,12 @@ import { FaInstagram } from "react-icons/fa6";
 import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
-  const router = useRouter(); // Use useRouter to programmatically navigate
+  const router = useRouter();
 
   const handleLogout = (event: React.MouseEvent) => {
-    event.preventDefault(); // Prevent default link behavior
+    event.preventDefault(); 
 
-    // Show SweetAlert confirmation dialog
+    
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to logout?",
@@ -39,10 +39,10 @@ export const Navbar = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("sihmail"); // Clear localStorage
+        localStorage.removeItem("sihmail"); 
 
-        // Redirect to login page after logout
-        router.push("/login"); // Using Next.js router for navigation
+       
+        router.push("/login"); 
       }
     });
   };
@@ -53,34 +53,28 @@ export const Navbar = () => {
       position="sticky"
       className="bg-white shadow-lg border-b border-gray-300"
     >
-      {/* Left Section */}
+      
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <img
-              src="https://envs.sh/1J1.png"
+              src="https://envs.sh/1rN.png"
               alt="SIH-2024"
-              className="w-10 h-10 rounded-full"
+              className="w-50 h-10 rounded-full"
             />
-            <p className="font-bold text-inherit !text-black text-xl md:text-2xl">SIH-2024</p>
+            <p className="font-bold text-inherit !text-black text-xl md:text-2xl">AJCE X SIH</p>
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
 
-      {/* Mobile Menu Toggle */}
+      
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <NavbarMenuToggle className="text-black" />
       </NavbarContent>
 
-      {/* Right Section */}
       <NavbarContent className="flex basis-1/5 sm:basis-full justify-end">
         <NavbarItem className="flex gap-2">
-          <Link
-            href="https://www.instagram.com/ajce.in/"
-            className="transition-all duration-300 hover:scale-110"
-          >
-            <FaInstagram className="text-black text-xl sm:text-2xl" />
-          </Link>
+         
 
           <Avatar onClick={() => window.location.href = '/profile'}>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
@@ -89,14 +83,14 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-      {/* Links for Larger Screens */}
+     
       <ul className="hidden lg:flex gap-4 justify-start ml-2">
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href}>
             {item.label === "Logout" ? (
               <a
                 href="#"
-                onClick={handleLogout}  // Attach the logout handler here
+                onClick={handleLogout}  
                 className={clsx(
                   "text-black transition-all duration-300 hover:text-primary hover:font-medium",
                   "data-[active=true]:text-primary data-[active=true]:font-medium"
@@ -119,7 +113,7 @@ export const Navbar = () => {
         ))}
       </ul>
 
-      {/* Mobile Menu */}
+      
       <NavbarMenu>
         {siteConfig.navItems.map((item) => (
           <NavbarMenuItem
@@ -135,7 +129,7 @@ export const Navbar = () => {
             {item.label === "Logout" ? (
               <a
                 href="#"
-                onClick={handleLogout}  // Attach the logout handler here
+                onClick={handleLogout}  
                 className="text-base"
               >
                 {item.label}

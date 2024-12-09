@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+'use client'
+import React, { useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
@@ -6,11 +7,42 @@ import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Modal from 'react-modal';
 
 const mainpage = () => {
   const [username, setUsername] = useState("");
-
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [mapImage, setMapImage] = useState("");
   const router = useRouter();
+
+
+  const openMapModal = (imageUrl: string) => {
+    setMapImage(imageUrl);
+    setModalIsOpen(true);
+  };
+
+
+  const closeMapModal = () => {
+    setModalIsOpen(false);
+    setMapImage("");
+  };
+
+
+  useEffect(() => {
+    if (modalIsOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.setAttribute('aria-hidden', 'true');
+    } else {
+      document.body.style.overflow = '';
+      document.body.removeAttribute('aria-hidden');
+    }
+
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.removeAttribute('aria-hidden');
+    };
+  }, [modalIsOpen]);
 
   useEffect(() => {
     const email = localStorage.getItem("sihmail");
@@ -24,7 +56,6 @@ const mainpage = () => {
       setUsername((response.data as { name: string }).name);
     };
     fetchUserDetails();
-
   }, []);
 
   return (
@@ -51,7 +82,7 @@ const mainpage = () => {
                   10000,
                 ]}
                 wrapper="span"
-                speed={60}
+                speed={10}
                 repeat={Infinity}
               />
             </h1>
@@ -61,19 +92,17 @@ const mainpage = () => {
             </p>
           </motion.div>
           <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
-          
-              <Image
-                src="https://envs.sh/1rN.png"
-                alt="College Image"
-                width={350}
-                height={350}
-                className=" shadow-xl object-cover"
-              />
-          
+            <Image
+              src="https://envs.sh/1rN.png"
+              alt="College Image"
+              width={350}
+              height={350}
+              className="shadow-xl object-cover"
+              loading="lazy" // Add lazy loading here
+            />
           </div>
         </div>
       </section>
-
 
       <section className="py-16 flex justify-center">
         <motion.div
@@ -87,11 +116,69 @@ const mainpage = () => {
             width={500}
             height={300}
             className="rounded-full shadow-2xl object-cover"
+            loading="lazy" // Add lazy loading here
           />
         </motion.div>
       </section>
+
+      <section className="py-16 flex justify-center gap-8">
+        <div className="flex flex-col items-center">
+          <Image
+            src="https://envs.sh/1UZ.jpg"
+            alt="Map Image 1"
+            width={200}
+            height={200}
+            className="cursor-pointer shadow-lg hover:scale-105 transition-all"
+            onClick={() => openMapModal("https://envs.sh/1UZ.jpg")}
+            loading="lazy" // Add lazy loading here
+          />
+          <span className="text-black mt-2">Map 1</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <Image
+            src="https://envs.sh/1U5.jpg"
+            alt="Map Image 2"
+            width={200}
+            height={200}
+            className="cursor-pointer shadow-lg hover:scale-105 transition-all"
+            onClick={() => openMapModal("https://envs.sh/1U5.jpg")}
+            loading="lazy" // Add lazy loading here
+          />
+          <span className="text-black mt-2">Map 2</span>
+        </div>
+      </section>
+
+      {modalIsOpen && (
+        <div className="modal-overlay fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+          <div className="modal-content bg-white p-6 rounded-lg shadow-lg w-full h-full max-w-full max-h-full overflow-auto flex justify-center items-center">
+            <div className="w-full h-full flex justify-center items-center">
+              <div className="relative w-full h-full max-w-[90%] max-h-[90%]">
+                <h2 className="text-center text-2xl font-bold mb-4 absolute top-4 left-1/2 transform -translate-x-1/2 z-10">
+                  Map
+                </h2>
+                <Image
+                  src={mapImage}
+                  alt="Map"
+                  layout="fill"
+                  objectFit="contain"
+                  className="rounded-xl shadow-lg"
+                  loading="lazy" // Add lazy loading here
+                />
+                <div className="flex justify-center mt-4 z-10 absolute bottom-4 left-1/2 transform -translate-x-1/2">
+                  <button
+                    onClick={closeMapModal}
+                    className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition"
+                  >
+                    Close Map
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
-  )
-}
+  );
+};
 
 export default mainpage;

@@ -93,7 +93,7 @@ export default function App() {
               type="email"
               className="text-xl font-bold"
               style={{
-                color: "white", 
+                color: "black", 
                 backgroundColor: "white",  
               }}
             />
@@ -108,7 +108,7 @@ export default function App() {
               type="password"
               className="text-black"
               style={{
-                color: "white",  
+                color: "black",  
                 backgroundColor: "white",  
               }}
             />
