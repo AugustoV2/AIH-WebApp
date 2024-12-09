@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import { Form, Input, Button, Card } from "@nextui-org/react";
 import axios from "axios";
@@ -7,49 +7,47 @@ export default function App() {
   const [action, setAction] = React.useState<string | null>(null);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
-  
   React.useEffect(() => {
-    if (action) {
-      if (action === 'login-success') {
-       
-        window.location.href = "/dashboard";  
-      }
+    if (action === "login-success") {
+      window.location.href = "/dashboard"; // Redirect to dashboard on success
     }
   }, [action]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    let data = Object.fromEntries(new FormData(e.currentTarget as HTMLFormElement));
+    const formData = Object.fromEntries(new FormData(e.currentTarget as HTMLFormElement));
 
     try {
-      const response = await axios.post('../app/api/login', data);
-      const responseData: { message?: string } = response.data as { message?: string };
-      
+      // POST request to login API
+      const response = await axios.post("/api/login", formData);
+
       if (response.status === 200) {
-      
-        setAction('login-success');
-      } else {
-        
-        setErrorMessage(responseData.message || 'Login failed');
+        setAction("login-success");
+      } else if (response.status === 404) {
+        const data = response.data as { error?: string };
+        setErrorMessage(data.error || "Login failed");
       }
     } catch (error) {
-      setErrorMessage('An error occurred. Please try again.');
+      setErrorMessage("An error occurred. Please try again.");
+      console.error("Login error:", error);
     }
   };
 
-
   const disableSideBarIfFormIsNotFilled = async () => {
     try {
-      interface UserData {
-        isFormFilled: boolean;
+      const email = localStorage.getItem("email");
+
+      if (!email) {
+        console.warn("Email not found in local storage.");
+        return;
       }
 
-      const res = await axios.get<UserData>('/api/data/user', {
-        params: { email: localStorage.getItem("email") }
+      // GET request to fetch user data
+      const response = await axios.get<{ isFormFilled: boolean }>("/api/login", {
+        params: { email },
       });
 
-      if (res.data && res.data.isFormFilled === false) {
-        
+      if (response.data && response.data.isFormFilled === false) {
         console.log("Form not filled. Disabling sidebar.");
       }
     } catch (error) {
@@ -59,7 +57,8 @@ export default function App() {
 
   React.useEffect(() => {
     disableSideBarIfFormIsNotFilled();
-  }, []); 
+  }, []);
+
   return (
     <div className="flex justify-center items-center min-h-screen">
       <Card className="w-full max-w-md p-6 shadow-lg">
@@ -78,7 +77,6 @@ export default function App() {
               labelPlacement="outside"
               name="email"
               placeholder="Enter your email"
-              
               type="email"
             />
 
