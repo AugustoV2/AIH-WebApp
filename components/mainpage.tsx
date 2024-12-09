@@ -61,32 +61,34 @@ const mainpage = () => {
             </p>
           </motion.div>
           <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
-            <motion.div
-              initial={{ opacity: 0, rotate: 45 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              transition={{ duration: 0.8 }}
-            >
+          
               <Image
-                src="https://envs.sh/1r2.png"
+                src="https://envs.sh/1rN.png"
                 alt="College Image"
                 width={350}
                 height={350}
-                className="rounded-full shadow-xl object-cover"
+                className=" shadow-xl object-cover"
               />
-            </motion.div>
+          
           </div>
         </div>
       </section>
 
-      {/* New Image Section at the End */}
+
       <section className="py-16 flex justify-center">
-        <Image
-          src="https://envs.sh/1rN.png"
-          alt="End Image"
-          width={500}
-          height={300}
-          className="rounded-lg shadow-2xl object-cover"
-        />
+        <motion.div
+          initial={{ opacity: 0, rotate: 45 }}
+          animate={{ opacity: 1, rotate: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <Image
+            src="https://envs.sh/1r2.png"
+            alt="End Image"
+            width={500}
+            height={300}
+            className="rounded-full shadow-2xl object-cover"
+          />
+        </motion.div>
       </section>
     </>
   )

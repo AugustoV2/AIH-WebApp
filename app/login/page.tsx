@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React from "react";
 import { Form, Input, Button, Card } from "@nextui-org/react";
 import axios from "axios";
@@ -16,7 +16,7 @@ export default function App() {
     }
 
     if (action === "login-success") {
-      window.location.href = "/"; 
+      window.location.href = "/";
     }
   }, [action]);
 
@@ -35,7 +35,7 @@ export default function App() {
         setErrorMessage(data.error || "Login failed");
       }
     } catch (error) {
-      setErrorMessage("An error occurred. Please try again.");
+      setErrorMessage("An unexpected error occurred. Please try again.");
       console.error("Login error:", error);
     }
   };
@@ -50,16 +50,21 @@ export default function App() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      
       <div
-        className="absolute top-0 left-0 w-full h-1/3"
+        className="absolute top-0 left-0 w-full h-1/3 bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('https://envs.sh/1ky.png')", 
-          backgroundSize: "100%",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+          backgroundImage: "url('https://envs.sh/1rN.png')",
+          backgroundSize: "100%", // Default size for smaller screens
         }}
-      ></div>
+      >
+        {/* Background for large screens */}
+        <div
+          className="lg:bg-[40%]"
+          style={{
+            backgroundSize: "100%", // Default for mobile
+          }}
+        />
+      </div>
 
       <Card
         className="w-full max-w-md p-6 shadow-lg"
@@ -110,9 +115,9 @@ export default function App() {
 
             {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:gap-6 justify-center">
-              <Button type="submit" className="w-full sm:w-auto">Submit</Button>
-              <Button type="reset" variant="flat" className="w-full sm:w-auto">Reset</Button>
+            <div className="flex flex-col gap-3 sm:flex-row sm:gap-6 justify-center ">
+              <Button type="submit" className="w-full sm:w-auto bg-black text-white">Submit</Button>
+              <Button type="reset" variant="flat" className="w-full sm:w-auto  bg-black text-white">Reset</Button>
             </div>
           </Form>
         </div>
