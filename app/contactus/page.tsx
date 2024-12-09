@@ -126,7 +126,7 @@ const ContactUs = () => {
                                 {modalContent === 'Accommodation' && (
                                     <div>
                                         <p className="text-white">
-                                            For accommodation inquiries, please contact: +91 9876543210.
+                                            For accommodation inquiries, please contact:
                                         </p>
                                         <p className="text-white mt-4">
                                             Joel: +91 9876543210.
