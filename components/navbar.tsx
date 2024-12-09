@@ -8,6 +8,11 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
 
 import { Link } from "@nextui-org/link";
 import NextLink from "next/link";
@@ -28,7 +33,7 @@ export const Navbar = () => {
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <img
-                src="https://envs.sh/1J1.png" 
+              src="https://envs.sh/1J1.png"
               alt="SIH-2024"
               className="w-10 h-10 rounded-full"
             />
@@ -61,6 +66,11 @@ export const Navbar = () => {
           <Link href="https://www.instagram.com/ajce.in/" className="transition-all duration-300 hover:scale-110">
             <FaInstagram className="text-black text-xl sm:text-2xl" />
           </Link>
+
+            <Avatar className="" onClick={() => window.location.href = '/profile'}>
+              <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
         </NavbarItem>
       </NavbarContent>
 
@@ -68,8 +78,8 @@ export const Navbar = () => {
         <NavbarMenuToggle />
       </NavbarContent>
 
-      
-     
+
+
     </NextUINavbar>
   );
 };
