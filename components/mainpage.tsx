@@ -1,11 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import Image from "next/image";
 import { Navbar } from "@/components/navbar";
+import router from 'next/router';
+import axios from 'axios';
+
+    
 
 const mainpage = () => {
+    const[username, setUsername] = useState("");
+
+
+    useEffect(() => {
+        const email = localStorage.getItem("sihmail");
+        
+        if (!email) {
+            router.push("/login");
+        }
+
+        const fetchUserDetails = async () => {
+            const response = await axios.get(`/api/login?email=${email}`);
+            setUsername((response.data as { name: string }).name);
+        };
+        fetchUserDetails();
+
+        }, []);
   return (
     <> 
     <Navbar/>
@@ -19,7 +40,8 @@ const mainpage = () => {
         >
           <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-red-600">
-              Welcome,Name{" "}
+              Welcome, <br />
+              {username}
             </span>
             <br />
             <TypeAnimation
@@ -53,7 +75,7 @@ const mainpage = () => {
               alt="College Image"
               width={350}
               height={350}
-              className="rounded-lg shadow-xl object-cover"
+              className="rounded-full shadow-xl object-cover"
             />
           </motion.div>
         </div>
