@@ -1,14 +1,26 @@
-import React from 'react'
-import Login from '../components/login'
-import Mainpage from '../components/mainpage'
+"use client"
+import React, { use, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Mainpage from "../components/mainpage";
 
 const MainPage = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    // Check if the 'email' exists in localStorage
+    const email = localStorage.getItem("email");
+
+    if (!email) {
+      // If 'email' is not found in localStorage, redirect to login page
+      router.push("/login");
+    }
+  }, []);
+
   return (
     <>
-      {/* <Login/> */}
-      <Mainpage/>
+      <Mainpage />
     </>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;

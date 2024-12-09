@@ -8,8 +8,18 @@ export default function App() {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   React.useEffect(() => {
+    // Check if it's the first visit by checking localStorage for the 'visited' flag
+    const isFirstVisit = localStorage.getItem("visited") === null;
+
+    if (isFirstVisit) {
+      // Clear the localStorage for first-time visitors
+      localStorage.clear();
+      // Set a flag in localStorage indicating that the user has visited
+      localStorage.setItem("visited", "true");
+    }
+
     if (action === "login-success") {
-      window.location.href = "/dashboard"; // Redirect to dashboard on success
+      window.location.href = "/"; // Redirect to dashboard on success
     }
   }, [action]);
 
@@ -23,6 +33,7 @@ export default function App() {
 
       if (response.status === 200) {
         setAction("login-success");
+        localStorage.setItem("email", formData.email as string);
       } else if (response.status === 404) {
         const data = response.data as { error?: string };
         setErrorMessage(data.error || "Login failed");
@@ -32,32 +43,6 @@ export default function App() {
       console.error("Login error:", error);
     }
   };
-
-  // const disableSideBarIfFormIsNotFilled = async () => {
-  //   try {
-  //     const email = localStorage.getItem("email");
-
-  //     if (!email) {
-  //       console.warn("Email not found in local storage.");
-  //       return;
-  //     }
-
-  //     // GET request to fetch user data
-  //     const response = await axios.get<{ isFormFilled: boolean }>("/api/login", {
-  //       params: { email },
-  //     });
-
-  //     if (response.data && response.data.isFormFilled === false) {
-  //       console.log("Form not filled. Disabling sidebar.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error fetching user data:", error);
-  //   }
-  // };
-
-  // React.useEffect(() => {
-  //   disableSideBarIfFormIsNotFilled();
-  // }, []);
 
   return (
     <div className="flex justify-center items-center min-h-screen">
