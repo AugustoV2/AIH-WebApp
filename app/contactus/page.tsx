@@ -68,6 +68,13 @@ const ContactUs = () => {
                     >
                         Accommodation
                     </Button>
+                    <Button
+                        onPress={() => openModalWithContent('Travel')}
+                        size="lg"
+                        className="shadow-lg hover:shadow-xl transition duration-300 w-full sm:w-auto"
+                    >
+                        Travel
+                    </Button>
                 </div>
 
                 {/* Modal */}
