@@ -21,7 +21,7 @@ const MainPage = () => {
   return (
     <>
       <Login />
-      {/*   */}
+      
     </>
   );
 };
