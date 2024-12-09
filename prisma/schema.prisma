@@ -13,3 +13,14 @@ model User {
   name     String?
   password String
 }
+
+model participants {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  teamId         Int
+  teamName       String
+  name           String
+  mailId         String @unique
+  mobileNumber   String  @db.String // MongoDB stores large numbers as strings to avoid precision issues
+  studentMentor  String
+  participantId  String
+}
