@@ -14,9 +14,10 @@ const GoogleMap = () => {
           loading="lazy"
           allowFullScreen
           src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyAOVYRIgupAurZup5y1PRh8Ismb1A3lLao
-                &q=Amal+Jyothi+College+of+Engineering+Autonomous,+9.52866,76.82344&zoom=18`}
+                &q=9.52866,76.82344&zoom=18&maptype=satellite`}
         ></iframe>
       </div>
+      
     </div>
   );
 };

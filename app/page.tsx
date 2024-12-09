@@ -5,6 +5,7 @@ import Mainpage from "../components/mainpage";
 import Login from "./login/page";
 import GoogleMap from "@/components/map";
 import { Navbar } from "@nextui-org/react";
+import Timeline from "@/components/timeline";
 
 
 const MainPage = () => {
@@ -27,6 +28,7 @@ const MainPage = () => {
       {/* <Login /> */}
    
       <Mainpage />
+      <Timeline/>
       <GoogleMap />
       {/*   */}
     </>
