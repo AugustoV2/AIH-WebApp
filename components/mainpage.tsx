@@ -3,11 +3,13 @@ import React from 'react';
 import { Card } from '@nextui-org/react';
 import { Grid, Typography as Text, Box as Row, Container as Col } from '@mui/material';
 import Image from 'next/image';
+import { Navbar } from "@/components/navbar";
 
 const WhatIsSIH: React.FC = () => {
     return (
-
-        
+        <>
+        <Navbar />
+       
         <section style={{ padding: '2rem 1rem' }}>
              <style jsx global>{`
                 /* Hide scrollbar */
@@ -123,6 +125,8 @@ const WhatIsSIH: React.FC = () => {
 
 
         </section >
+     
+        </>
     );
 };
 

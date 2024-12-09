@@ -8,18 +8,18 @@ export default function App() {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    // Check if it's the first visit by checking localStorage for the 'visited' flag
+    
     const isFirstVisit = localStorage.getItem("visited") === null;
 
     if (isFirstVisit) {
-      // Clear the localStorage for first-time visitors
+      
       localStorage.clear();
-      // Set a flag in localStorage indicating that the user has visited
+      
       localStorage.setItem("visited", "true");
     }
 
     if (action === "login-success") {
-      window.location.href = "/"; // Redirect to dashboard on success
+      window.location.href = "/"; 
     }
   }, [action]);
 
