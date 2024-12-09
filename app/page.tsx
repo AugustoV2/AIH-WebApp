@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Mainpage from "../components/mainpage";
 import Login from "./login/page";
 import GoogleMap from "@/components/map";
+import { Navbar } from "@nextui-org/react";
 
 
 const MainPage = () => {
@@ -14,7 +15,7 @@ const MainPage = () => {
     const email = localStorage.getItem("sihmail");
 
     if (!email) {
-      // If 'email' is not found in localStorage, redirect to login page
+     
       router.push("/login");
     }
     
@@ -23,6 +24,8 @@ const MainPage = () => {
 
   return (
     <>
+      {/* <Login /> */}
+   
       <Mainpage />
       <GoogleMap />
       {/*   */}

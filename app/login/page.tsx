@@ -8,18 +8,18 @@ export default function App() {
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    // Check if it's the first visit by checking localStorage for the 'visited' flag
+    
     const isFirstVisit = localStorage.getItem("visited") === null;
 
     if (isFirstVisit) {
-      // Clear the localStorage for first-time visitors
+      
       localStorage.clear();
-      // Set a flag in localStorage indicating that the user has visited
+      
       localStorage.setItem("visited", "true");
     }
 
     if (action === "login-success") {
-      window.location.href = "/"; // Redirect to dashboard on success
+      window.location.href = "/"; 
     }
   }, [action]);
 
@@ -45,12 +45,11 @@ export default function App() {
   };
 
   return (
-    
     <div
       className="relative flex justify-center items-center min-h-screen"
       style={{
         backgroundImage: "url('https://envs.sh/1k8.png')", // Main background image
-        
+
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -74,17 +73,17 @@ export default function App() {
           backgroundColor: "rgba(255, 255, 255, 0.8)",
           borderRadius: "12px",
           zIndex: 10,
-           marginTop: "250px",
+          marginTop: "250px",
         }}
       >
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 text-black">
           <h1 className="text-xl font-bold text-black ">Login</h1>
-            <Form
-            className="flex flex-col gap-4 w-full "
+          <Form
+            className="flex flex-col gap-4 w-full"
             validationBehavior="native"
             onReset={() => setAction("reset")}
             onSubmit={handleSubmit}
-            >
+          >
             <Input
               isRequired
               errorMessage="Please enter a valid email"
@@ -93,7 +92,11 @@ export default function App() {
               name="email"
               placeholder="Enter your email"
               type="email"
-              className="text-black"
+              className="text-xl font-bold"
+              style={{
+                // For the input text
+                color: "black",
+              }}
             />
 
             <Input
@@ -105,6 +108,9 @@ export default function App() {
               placeholder="Enter your password"
               type="password"
               className="text-black"
+              style={{
+                color: "black",
+              }}
             />
 
             {errorMessage && <p className="text-red-500">{errorMessage}</p>}
@@ -112,10 +118,10 @@ export default function App() {
             <div className="flex gap-3 justify-center">
               <Button type="submit">Submit</Button>
               <Button type="reset" variant="flat">
-              Reset
+                Reset
               </Button>
             </div>
-            </Form>
+          </Form>
         </div>
       </Card>
     </div>

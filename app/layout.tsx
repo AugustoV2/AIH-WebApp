@@ -5,17 +5,18 @@ import clsx from "clsx";
 
 import { Providers } from "./providers";
 
-import { siteConfig } from "@/config/site";
+import { siteConfig as importedSiteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
+
 
 export const metadata: Metadata = {
   title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
+    default: importedSiteConfig.name,
+    template: `%s - ${importedSiteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: importedSiteConfig.description,
   icons: {
-    icon: "/favicon.ico",
+    icon: "/photo.ico",
   },
 };
 
@@ -36,23 +37,17 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          "min-h-screen bg-cover bg-center font-sans antialiased",
-          fontSans.variable
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
         )}
-        style={{
-          backgroundImage: "url('https://example.com/your-background.jpg')", // Replace with your image URL
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-        }}
       >
         <Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="relative flex flex-col h-screen">
-            {/* Optional Navbar */}
-            <main className="   flex-grow">
+            
+            <main className="">
               {children}
             </main>
-
+           
           </div>
         </Providers>
       </body>
