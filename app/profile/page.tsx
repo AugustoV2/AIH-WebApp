@@ -11,9 +11,9 @@ import {
     ModalBody,
     ModalFooter,
     Button,
-    useDisclosure,
 } from '@nextui-org/react';
 import { Navbar } from "@/components/navbar";
+import { QRCode } from 'react-qrcode-logo';  // Import QRCode component correctly
 
 const Profile = () => {
     // State to manage which modal is open
@@ -71,7 +71,9 @@ const Profile = () => {
             icon: <FaQrcode className='size-20' />,
             bg: 'bg-gradient-to-r from-blue-400 to-blue-600',
             content: 'Details about My Meetings.',
-            modalContent: null,
+            modalContent: userDetails ? {
+                qrCode: userDetails.participantId,  // Passing participantId for QR code generation
+            } : null,
         },
     ];
 
@@ -152,6 +154,12 @@ const Profile = () => {
                                                     <strong>{key.replace(/([A-Z])/g, ' $1')}:</strong> {value}
                                                 </p>
                                             ))}
+                                            {/* Display QR Code if QR Code modal */}
+                                            {item.title === 'QR Code' && userDetails?.participantId && (
+                                                <div className="mt-4">
+                                                    <QRCode value={userDetails.participantId} size={128} />
+                                                </div>
+                                            )}
                                         </div>
                                     ) : (
                                         <p className="text-gray-700">{item.content}</p>
