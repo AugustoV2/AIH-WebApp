@@ -7,15 +7,21 @@ export const siteConfig = {
     {
       label: "Home",
       href: "./",
+      
+
     },
-    
-    
-  
+
     {
       label: "Contact Us",
       href: "./contactus",
     },
-  
+    {
+      label: "Logout",
+      href: "./login",
+      
+
+    },
+
   ],
-  
+
 };

@@ -13,6 +13,7 @@ import {
     Button,
     useDisclosure,
 } from '@nextui-org/react';
+import { Navbar } from "@/components/navbar";
 
 const Profile = () => {
     // State to manage which modal is open
@@ -48,13 +49,15 @@ const Profile = () => {
     ];
 
     return (
+        <>  
+        <Navbar/>
         <div className="container mx-auto p-6 font-sans min-h-screen flex flex-col">
             {/* Header Section */}
             <header className="flex items-center justify-between mb-10 border-b-2 pb-6 border-gray-300">
                 <div className="flex items-center">
                     {/* Profile Image */}
                     <Image
-                        src="https://envs.sh/1r2.png"
+                        src="https://envs.sh/1vp.jpg"
                         alt="Profile Image"
                         width={100}
                         height={100}
@@ -153,6 +156,7 @@ const Profile = () => {
                 </p>
             </footer>
         </div>
+        </>
     );
 };
 
