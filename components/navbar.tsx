@@ -50,7 +50,6 @@ export const Navbar = () => {
       position="sticky"
       className="bg-white shadow-lg border-b border-gray-300"
     >
-      
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -59,12 +58,6 @@ export const Navbar = () => {
               alt="SIH-2024"
               className="w-32 h-14 rounded-full"
             />
-            {/* <img
-              src="https://envs.sh/1mr.png"
-              alt="makerhub-iedc"
-              className="w-32 h-12 rounded-full"
-            /> */}
-            {/* <p className="font-bold text-inherit !text-black text-xl md:text-2xl">AJCE X SIH</p> */}
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
@@ -118,6 +111,7 @@ export const Navbar = () => {
         {siteConfig.navItems.map((item) => (
           <NavbarMenuItem
             key={item.href}
+            color="default" // Added the required color property
             className={clsx(
               "text-black transition-all duration-300 hover:text-primary hover:font-medium",
               item.label === "Home" || item.label === "Contact Us"
