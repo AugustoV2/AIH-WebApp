@@ -101,9 +101,9 @@ const TimelineGraph = () => {
                   }`}
                 />
                 <div
-                  className={`h-4 w-4 ${
-                    selectedDateIndex === index ? "bg-blue-600" : "bg-gray-400"
-                  } rounded-full cursor-pointer ml-3`}
+                //   className={`h-4 w-4 ${
+                //     selectedDateIndex === index ? "bg-blue-600" : "bg-gray-400"
+                //   } `}
                   onClick={() => handleSelectDate(index)}
                 ></div>
                 <h3
