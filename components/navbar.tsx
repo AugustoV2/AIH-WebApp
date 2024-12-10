@@ -1,6 +1,6 @@
-'use client';
+"use client";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -10,25 +10,17 @@ import {
   NavbarItem,
   NavbarMenuItem,
 } from "@nextui-org/navbar";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
-
-import { Link } from "@nextui-org/link";
 import NextLink from "next/link";
 import clsx from "clsx";
-import { FaInstagram } from "react-icons/fa6";
-
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
   const router = useRouter();
 
   const handleLogout = (event: React.MouseEvent) => {
-    event.preventDefault(); 
-    
+    event.preventDefault();
+
     Swal.fire({
       title: "Are you sure?",
       text: "Do you want to logout?",
@@ -38,8 +30,8 @@ export const Navbar = () => {
       cancelButtonText: "Cancel",
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("sihmail"); 
-        router.push("/login"); 
+        localStorage.removeItem("sihmail");
+        router.push("/login");
       }
     });
   };
@@ -69,7 +61,7 @@ export const Navbar = () => {
 
       <NavbarContent className="flex basis-1/5 sm:basis-full justify-end">
         <NavbarItem className="flex gap-2">
-          <Avatar onClick={() => window.location.href = '/profile'}>
+          <Avatar onClick={() => (window.location.href = "/profile")}>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
@@ -81,21 +73,20 @@ export const Navbar = () => {
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href}>
             {item.label === "Logout" ? (
-              <a
-                href="#"
-                onClick={handleLogout}  
+              <button
+                onClick={handleLogout}
                 className={clsx(
                   "text-black transition-all duration-300 hover:text-primary hover:font-medium",
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
               >
                 <span className="text-base sm:text-lg">{item.label}</span>
-              </a>
+              </button>
             ) : (
               <NextLink
                 className={clsx(
                   "text-black transition-all duration-300 hover:text-primary hover:font-medium",
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  "data-[active=true]:text-primary data-[active=true]:font-medium",
                 )}
                 href={item.href}
               >
@@ -116,17 +107,13 @@ export const Navbar = () => {
               "text-black transition-all duration-300 hover:text-primary hover:font-medium",
               item.label === "Home" || item.label === "Contact Us"
                 ? "border-b-2 border-black rounded-sm p-2 hover:bg-gray-100"
-                : "p-3"
+                : "p-3",
             )}
           >
             {item.label === "Logout" ? (
-              <a
-                href="#"
-                onClick={handleLogout}  
-                className="text-base"
-              >
+              <button onClick={handleLogout} className="text-base">
                 {item.label}
-              </a>
+              </button>
             ) : (
               <NextLink href={item.href}>
                 <span className="text-base">{item.label}</span>

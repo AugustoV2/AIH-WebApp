@@ -2,14 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import Link from "next/link";
+
 import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import Modal from "react-modal";
 
-const mainpage = () => {
+const MainPage = () => {
   const [username, setUsername] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [mapImage, setMapImage] = useState("");
@@ -58,16 +57,16 @@ const mainpage = () => {
     <>
       <Navbar />
       <section className="lg:py-16 ">
-      <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
-            <Image
-              src="https://envs.sh/1rN.png"
-              alt="College Image"
-              width={350}
-              height={350}
-              className=" object-cover"
-              loading="lazy"
-            />
-          </div>
+        <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
+          <Image
+            src="https://envs.sh/1rN.png"
+            alt="College Image"
+            width={350}
+            height={350}
+            className=" object-cover"
+            loading="lazy"
+          />
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -97,7 +96,6 @@ const mainpage = () => {
               innovation and creativity.
             </p>
           </motion.div>
-          
         </div>
       </section>
 
@@ -185,4 +183,4 @@ const mainpage = () => {
   );
 };
 
-export default mainpage;
+export default MainPage;

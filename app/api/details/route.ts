@@ -40,7 +40,9 @@ export async function GET(request: NextRequest) {
     // Respond with the participant details
     return NextResponse.json({ participant: participant }, { status: 200 });
   } catch (error) {
+    /* eslint-disable no-console */
     console.error("Error fetching participant details:", error);
+
     return NextResponse.json(
       { error: "Error fetching participant details" },
       { status: 500 }

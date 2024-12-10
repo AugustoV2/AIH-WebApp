@@ -2,7 +2,7 @@
 const nextConfig = {};
 
 module.exports = {
-    images: {
-      domains: ['envs.sh'], // Allow images from this domain
-    },
-  };
+  images: {
+    domains: ["envs.sh"], // Allow images from this domain
+  },
+};
