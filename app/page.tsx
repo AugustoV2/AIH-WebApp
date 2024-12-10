@@ -16,16 +16,16 @@ const MainPage = () => {
     const email = localStorage.getItem('sihmail');
 
     if (!email) {
-      // If no email in localStorage, redirect to the login page
+      
       router.push('/login');
     } else {
-      // Otherwise, stop loading
+      
       setLoading(false);
     }
   }, [router]);
 
   if (loading) {
-    // Custom spinner during the loading state
+   
     return (
       <div
         style={{
@@ -33,14 +33,14 @@ const MainPage = () => {
           justifyContent: 'center',
           alignItems: 'center',
           height: '100vh',
-          background: 'rgba(0, 0, 0, 0.1)', // Optional: add background color or overlay
+          background: 'rgba(0, 0, 0, 0.1)', 
         }}
       >
         <div
           style={{
             position: 'relative',
-            width: '50px',  // Custom width of the spinner
-            height: '50px', // Custom height of the spinner
+            width: '50px',  
+            height: '50px', 
           }}
         >
           <Spinner
@@ -49,8 +49,8 @@ const MainPage = () => {
               position: 'absolute',
               width: '100%',
               height: '100%',
-              backgroundImage: 'url(https://envs.sh/1Hi.webp)', // Your custom image
-              backgroundSize: 'contain', // Ensure the image scales properly
+              backgroundImage: 'url(https://envs.sh/1Hi.webp)', 
+              backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
             }}

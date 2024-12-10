@@ -98,7 +98,7 @@ const mainpage = () => {
               width={350}
               height={350}
               className="shadow-xl object-cover"
-              loading="lazy" // Add lazy loading here
+              loading="lazy"
             />
           </div>
         </div>
@@ -113,40 +113,45 @@ const mainpage = () => {
           <Image
             src="https://envs.sh/1r2.png"
             alt="End Image"
-            width={500}
-            height={300}
+            width={250}
+            height={250}
             className="rounded-full shadow-2xl object-cover"
-            loading="lazy" // Add lazy loading here
+            loading="lazy"
           />
         </motion.div>
       </section>
 
-      <section className="py-16 flex justify-center gap-8">
-        <div className="flex flex-col items-center">
-          <Image
-            src="https://envs.sh/1UZ.jpg"
-            alt="Map Image 1"
-            width={200}
-            height={200}
-            className="cursor-pointer shadow-lg hover:scale-105 transition-all"
-            onClick={() => openMapModal("https://envs.sh/1UZ.jpg")}
-            loading="lazy" // Add lazy loading here
-          />
-          <span className="text-black mt-2">Map 1</span>
-        </div>
-        <div className="flex flex-col items-center">
-          <Image
-            src="https://envs.sh/1U5.jpg"
-            alt="Map Image 2"
-            width={200}
-            height={200}
-            className="cursor-pointer shadow-lg hover:scale-105 transition-all"
-            onClick={() => openMapModal("https://envs.sh/1U5.jpg")}
-            loading="lazy" // Add lazy loading here
-          />
-          <span className="text-black mt-2">Map 2</span>
+      <section className="py-16 overflow-x-auto px-4">
+        <div className="flex gap-8 min-w-max">
+          <div className="flex flex-col items-center">
+            <Image
+              src="https://envs.sh/1UZ.jpg"
+              alt="Map Image 1"
+              width={200}
+              height={200}
+              className="cursor-pointer shadow-lg hover:scale-105 transition-all"
+              onClick={() => openMapModal("https://envs.sh/1UZ.jpg")}
+              loading="lazy"
+            />
+            <span className="text-black mt-2">Map 1</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <Image
+              src="https://envs.sh/1U5.jpg"
+              alt="Map Image 2"
+              width={200}
+              height={200}
+              className="cursor-pointer shadow-lg hover:scale-105 transition-all"
+              onClick={() => openMapModal("https://envs.sh/1U5.jpg")}
+              loading="lazy"
+            />
+            <span className="text-black mt-2">Map 2</span>
+          </div>
         </div>
       </section>
+
+
+
 
       {modalIsOpen && (
         <div className="modal-overlay fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">

@@ -135,7 +135,7 @@ const ContactUs = () => {
                                     )}
                                     {modalContent === 'Travel' && (
                                         <div>
-                                            <p className="text-black">For accommodation inquiries, please contact:</p>
+                                            <p className="text-black">For Travel inquiries, please contact:</p>
 
                                             <p className="text-black mt-4">Ashirvad: NIL.</p>
                                             
@@ -143,7 +143,7 @@ const ContactUs = () => {
                                     )}
                                     {modalContent === 'Reports & Certificate' && (
                                         <div>
-                                            <p className="text-black">For accommodation inquiries, please contact:</p>
+                                            <p className="text-black">For Reports & Certificate inquiries, please contact:</p>
 
                                             <p className="text-black mt-4">Neha: NIL.</p>
                                             
@@ -151,7 +151,7 @@ const ContactUs = () => {
                                     )}
                                     {modalContent === 'Technical' && (
                                         <div>
-                                            <p className="text-black">For accommodation inquiries, please contact:</p>
+                                            <p className="text-black">For Technical inquiries, please contact:</p>
 
                                             <p className="text-black mt-4">NIL: NIL.</p>
                                             
@@ -159,7 +159,7 @@ const ContactUs = () => {
                                     )}
                                     {modalContent === 'Program Commitee' && (
                                         <div>
-                                            <p className="text-black">For accommodation inquiries, please contact:</p>
+                                            <p className="text-black">For Program Commitee inquiries, please contact:</p>
 
                                             <p className="text-black mt-4">Alan Thomas Shaji (lead): NIL.</p>
                                             <p className="text-black ">Aswin MS: +91 8891554693.</p>

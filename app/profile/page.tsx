@@ -13,26 +13,26 @@ import {
     Button,
 } from '@nextui-org/react';
 import { Navbar } from "@/components/navbar";
-import { QRCode } from 'react-qrcode-logo';  // Import QRCode component correctly
+import { QRCode } from 'react-qrcode-logo'; 
 import { useRouter } from 'next/navigation';
 
 const Profile = () => {
-    // State to manage which modal is open
+   
     const [activeModal, setActiveModal] = useState<number | null>(null);
     const [userDetails, setUserDetails] = useState<any>(null);
     const router = useRouter();
 
-    // Handle API call to fetch user details based on email
+  
     useEffect(() => {
-        const email = localStorage.getItem('sihmail'); // Get the email from localStorage
+        const email = localStorage.getItem('sihmail'); 
         if(!email) {
-            router.push('/login'); // Redirect to login page if email is not found
+            router.push('/login'); 
         }
         if (email) {
             fetch(`/api/details?email=${email}`)
                 .then((response) => response.json())
                 .then((data) => {
-                    setUserDetails(data.participant); // Save the user data from the API
+                    setUserDetails(data.participant); 
                 })
                 .catch((error) => {
                     console.error("Error fetching user details:", error);
@@ -77,7 +77,7 @@ const Profile = () => {
             bg: 'bg-gradient-to-r from-blue-400 to-blue-600',
             content: 'Details about My Meetings.',
             modalContent: userDetails ? {
-                qrCode: userDetails.participantId,  // Passing participantId for QR code generation
+                qrCode: userDetails.participantId,  
             } : null,
         },
     ];
@@ -86,12 +86,12 @@ const Profile = () => {
         <>  
         <Navbar/>
         <div className="container mx-auto p-6 font-sans min-h-screen flex flex-col">
-            {/* Header Section */}
+           
             <header className="flex items-center justify-between mb-10 border-b-2 pb-6 border-gray-300">
                 <div className="flex items-center">
-                    {/* Profile Image */}
+                    
                     <Image
-                        src="https://envs.sh/1vp.jpg"
+                        src="https://envs.sh/1gc.jpg"
                         alt="Profile Image"
                         width={100}
                         height={100}
@@ -115,7 +115,7 @@ const Profile = () => {
                             onClick={() => handleOpenModal(index)}
                             className={`${item.bg} group flex flex-col items-center justify-center w-64 h-64 p-6 rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-transform duration-300 cursor-pointer`}
                         >
-                            {/* Card Icon */}
+                          
                             {typeof item.icon === 'string' ? (
                                 <Image
                                     src={item.icon}
@@ -129,7 +129,7 @@ const Profile = () => {
                                     {item.icon}
                                 </div>
                             )}
-                            {/* Card Title */}
+                            
                             <h2 className="text-xl font-semibold text-white group-hover:text-gray-200 transition-colors duration-300">
                                 {item.title}
                             </h2>
@@ -138,7 +138,7 @@ const Profile = () => {
                 </div>
             </nav>
 
-            {/* Modals */}
+           
             {cards.map((item, index) => (
                 <Modal
                     key={index}
@@ -159,7 +159,7 @@ const Profile = () => {
                                                     <strong>{key.replace(/([A-Z])/g, ' $1')}:</strong> {value}
                                                 </p>
                                             ))}
-                                            {/* Display QR Code if QR Code modal */}
+                                            
                                             {item.title === 'QR Code' && userDetails?.participantId && (
                                                 <div className="mt-4">
                                                     <QRCode value={userDetails.participantId} size={128} />
@@ -181,10 +181,10 @@ const Profile = () => {
                 </Modal>
             ))}
 
-            {/* Footer Section */}
+            
             <footer className="text-center mt-16 border-t-2 pt-6 border-gray-300">
                 <p className="text-sm text-gray-600 hover:text-gray-800 transition-colors duration-300">
-                    Copyright © 2024 | Kerala Startup Mission
+                    Copyright © 2024 | AJCE X SIH
                 </p>
                 <p className="text-sm text-gray-600">
                     <a

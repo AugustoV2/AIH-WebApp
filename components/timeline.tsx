@@ -56,12 +56,11 @@ const TimelineGraph = () => {
     },
   ];
 
-  // Set the default selected date if today's date exists in the schedule
+  
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
     const index = schedule.findIndex((event) => event.date === today);
 
-    // Only set the default date on the initial render
     if (index >= 0 && selectedDateIndex === null) {
       setSelectedDateIndex(index);
     }
@@ -73,15 +72,15 @@ const TimelineGraph = () => {
 
   return (
     <div className="flex flex-col items-center p-4">
-      <h2 className="text-3xl font-bold mb-6 text-gray-900">Timeline of Events</h2>
+      <h2 className="text-4xl font-bold mt-8 mb-8 text-gray-900">Timeline of Events</h2>
       <div className="relative w-full max-w-4xl">
         {/* Vertical Timeline */}
-         <div className="border-l-4 border-gray-300 relative">
+        <div className="border-l-4 border-gray-300 relative">
           {schedule.map((day, index) => (
             <div
               key={index}
               className={`mb-6 pl-1 relative flex items-start ${
-            selectedDateIndex === index ? "bg-gray-100 p-4 rounded-md" : ""
+                selectedDateIndex === index ? "bg-gray-100 p-4 rounded-md" : ""
               }`}
             >
               {/* Date Label */}

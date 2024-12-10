@@ -1,6 +1,6 @@
 'use client';
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2"; // Import SweetAlert2
+import Swal from "sweetalert2"; 
 import {
   Navbar as NextUINavbar,
   NavbarContent,
@@ -28,7 +28,6 @@ export const Navbar = () => {
 
   const handleLogout = (event: React.MouseEvent) => {
     event.preventDefault(); 
-
     
     Swal.fire({
       title: "Are you sure?",
@@ -40,8 +39,6 @@ export const Navbar = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem("sihmail"); 
-
-       
         router.push("/login"); 
       }
     });
@@ -67,15 +64,13 @@ export const Navbar = () => {
         </NavbarBrand>
       </NavbarContent>
 
-      
+      {/* Mobile Toggle Button */}
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <NavbarMenuToggle className="text-black" />
       </NavbarContent>
 
       <NavbarContent className="flex basis-1/5 sm:basis-full justify-end">
         <NavbarItem className="flex gap-2">
-         
-
           <Avatar onClick={() => window.location.href = '/profile'}>
             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
             <AvatarFallback>CN</AvatarFallback>
@@ -83,7 +78,7 @@ export const Navbar = () => {
         </NavbarItem>
       </NavbarContent>
 
-     
+      {/* Desktop Menu */}
       <ul className="hidden lg:flex gap-4 justify-start ml-2">
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href}>
@@ -113,7 +108,7 @@ export const Navbar = () => {
         ))}
       </ul>
 
-      
+      {/* Mobile Menu */}
       <NavbarMenu>
         {siteConfig.navItems.map((item) => (
           <NavbarMenuItem
@@ -123,7 +118,7 @@ export const Navbar = () => {
               "text-black transition-all duration-300 hover:text-primary hover:font-medium",
               item.label === "Home" || item.label === "Contact Us"
                 ? "border-b-2 border-black rounded-sm p-2 hover:bg-gray-100"
-                : ""
+                : "p-3"
             )}
           >
             {item.label === "Logout" ? (
