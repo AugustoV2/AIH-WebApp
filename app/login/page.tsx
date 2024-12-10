@@ -54,7 +54,7 @@ export default function App() {
         className="absolute top-0 left-0 w-full h-1/3 bg-center bg-no-repeat"
         style={{
           backgroundImage: "url('https://envs.sh/1rN.png')",
-          backgroundSize: "100%", 
+          backgroundSize: "50%", 
         }}
       >
         

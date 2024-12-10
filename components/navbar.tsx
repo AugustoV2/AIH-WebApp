@@ -57,9 +57,13 @@ export const Navbar = () => {
             <img
               src="https://envs.sh/1rN.png"
               alt="SIH-2024"
-              className="w-50 h-10 rounded-full"
+              className="w-32 h-14 rounded-full"
+            /><img
+              src="https://envs.sh/1mr.png"
+              alt="makerhub-iedc"
+              className="w-32 h-12 rounded-full"
             />
-            <p className="font-bold text-inherit !text-black text-xl md:text-2xl">AJCE X SIH</p>
+            {/* <p className="font-bold text-inherit !text-black text-xl md:text-2xl">AJCE X SIH</p> */}
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
@@ -113,7 +117,6 @@ export const Navbar = () => {
         {siteConfig.navItems.map((item) => (
           <NavbarMenuItem
             key={item.href}
-            color="black"
             className={clsx(
               "text-black transition-all duration-300 hover:text-primary hover:font-medium",
               item.label === "Home" || item.label === "Contact Us"

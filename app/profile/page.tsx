@@ -184,7 +184,7 @@ const Profile = () => {
             
             <footer className="text-center mt-16 border-t-2 pt-6 border-gray-300">
                 <p className="text-sm text-gray-600 hover:text-gray-800 transition-colors duration-300">
-                    Copyright © 2024 | AJCE X SIH
+                    Copyright © 2024 | SIH 2024 | makerHUB IEDC
                 </p>
                 <p className="text-sm text-gray-600">
                     <a
