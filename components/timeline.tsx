@@ -92,20 +92,23 @@ const TimelineGraph = () => {
                 <FaRegCalendarAlt
                   className={`text-2xl ${selectedDateIndex === index ? "text-blue-600" : "text-gray-500"}`}
                 />
-                <div
-                  className={`h-4 w-4 ${selectedDateIndex === index ? "bg-blue-600" : "bg-gray-400"} rounded-full cursor-pointer ml-3`}
+                <button
+                  type="button"
+                  className="h-4 w-4 cursor-pointer"
                   onClick={() => handleSelectDate(index)}
-                ></div>
-                <h3
-                  className={`ml-3 font-bold text-gray-800 text-lg cursor-pointer ${selectedDateIndex === index ? "text-blue-600" : ""}`}
+                  aria-label={`Select date ${new Date(day.date).toLocaleDateString()}`}
+                />
+                <button
+                  className={`ml-3 font-bold text-gray-800 text-lg ${selectedDateIndex === index ? "text-blue-600" : ""}`}
                   onClick={() => handleSelectDate(index)}
+                  aria-label={`View events for ${new Date(day.date).toLocaleDateString()}`}
                 >
                   {new Date(day.date).toLocaleDateString("en-US", {
                     month: "long",
                     day: "numeric",
                     year: "numeric",
                   })}
-                </h3>
+                </button>
               </div>
 
               {/* Display Schedule when selected */}
