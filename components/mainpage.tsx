@@ -7,6 +7,7 @@ import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import Footer from "./footer";
 
 const MainPage = () => {
   const [username, setUsername] = useState("");
@@ -56,14 +57,15 @@ const MainPage = () => {
   return (
     <>
       <Navbar />
+      <Footer />
       <section className="lg:py-16 ">
-        <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
+        <div className="col-span-1 sm:col-span-5 flex justify-center items-center mt-8 sm:mt-0 bg-transparent">
           <Image
             src="https://envs.sh/1rN.png"
             alt="College Image"
             width={350}
             height={350}
-            className=" object-cover"
+            className="object-cover"
             loading="lazy"
           />
         </div>

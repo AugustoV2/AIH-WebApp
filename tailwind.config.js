@@ -9,7 +9,16 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    // ... rest of your existing theme configuration ...
+    extend: {
+      colors: {
+        'pastel-blue': '#a8d8ea',
+        'pastel-green': '#b8e994',
+        'pastel-yellow': '#ffeaa7',
+        'pastel-pink': '#ffcccc',
+        'pastel-purple': '#d1c4e9',
+        'pastel-orange': '#ffd1a9',
+      },
+    },
   },
   plugins: [
     nextui({
