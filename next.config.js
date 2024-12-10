@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    domains: ["envs.sh"], // Allow images from this domain
+  },
+};
 
-module.exports = {
-    images: {
-      domains: ['envs.sh'], // Allow images from this domain
-      reactStrictMode: true,
-    },
-  };
+module.exports = nextConfig;

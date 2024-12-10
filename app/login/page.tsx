@@ -1,7 +1,8 @@
-'use client';
+"use client";
 import React from "react";
 import { Form, Input, Button, Card } from "@nextui-org/react";
 import axios from "axios";
+import Image from "next/image"; // Updated import for image optimization
 
 export default function App() {
   const [action, setAction] = React.useState<string | null>(null);
@@ -22,7 +23,9 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const formData = Object.fromEntries(new FormData(e.currentTarget as HTMLFormElement));
+    const formData = Object.fromEntries(
+      new FormData(e.currentTarget as HTMLFormElement),
+    );
 
     try {
       const response = await axios.post("/api/login", formData);
@@ -36,7 +39,9 @@ export default function App() {
       if (error.response) {
         // Server responded with a status other than 2xx
         if (error.response.status === 404) {
-          setErrorMessage("User not found. Please check your email and try again.");
+          setErrorMessage(
+            "User not found. Please check your email and try again.",
+          );
         } else if (error.response.status === 401) {
           setErrorMessage("Invalid password. Please try again.");
         } else {
@@ -44,7 +49,9 @@ export default function App() {
         }
       } else if (error.request) {
         // Request was made, but no response received
-        setErrorMessage("Unable to connect to the server. Please check your internet connection.");
+        setErrorMessage(
+          "Unable to connect to the server. Please check your internet connection.",
+        );
       } else {
         // Other errors
         setErrorMessage("An unexpected error occurred. Please try again.");
@@ -86,10 +93,12 @@ export default function App() {
 
       {/* Desktop Banner */}
       <div className="hidden sm:flex flex-col items-center absolute top-0 left-0 w-full h-auto p-6">
-        <img
+        <Image
           src="https://envs.sh/1rN.png"
           alt="Event Logo"
           className="h-20 w-auto mb-4"
+          width={320} // Added width and height for optimization
+          height={80}
         />
         <h1
           className="text-black text-xl md:text-2xl lg:text-3xl font-bold text-center"
@@ -148,13 +157,22 @@ export default function App() {
               }}
             />
 
-            {errorMessage && <p className="text-red-500 text-sm">{errorMessage}</p>}
+            {errorMessage && (
+              <p className="text-red-500 text-sm">{errorMessage}</p>
+            )}
 
             <div className="flex flex-col gap-3 sm:flex-row sm:gap-6 justify-center ">
-              <Button type="submit" className="w-full sm:w-auto bg-black text-white">
+              <Button
+                type="submit"
+                className="w-full sm:w-auto bg-black text-white"
+              >
                 Submit
               </Button>
-              <Button type="reset" variant="flat" className="w-full sm:w-auto bg-black text-white">
+              <Button
+                type="reset"
+                variant="flat"
+                className="w-full sm:w-auto bg-black text-white"
+              >
                 Reset
               </Button>
             </div>

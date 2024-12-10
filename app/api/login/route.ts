@@ -1,5 +1,5 @@
-import { db } from "@/lib/db";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server"; // 1st import group
+import { db } from "@/lib/db"; // 2nd import group
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,22 +19,35 @@ export async function POST(request: NextRequest) {
         });
 
         if (!user) {
-          return NextResponse.json({ error: "User not found" }, { status: 404 });
+          return NextResponse.json(
+            { error: "User not found" },
+            { status: 404 }
+          );
         }
 
         if (user.password !== formData.password) {
-          return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+          return NextResponse.json(
+            { error: "Invalid credentials" },
+            { status: 401 }
+          );
         }
 
         return NextResponse.json(user, { status: 200 });
       } catch (dbError) {
+        /* eslint-disable no-console */
         console.error("Error fetching user from the database:", dbError);
+
         return NextResponse.json({ error: "Database error" }, { status: 500 });
       }
     }
   } catch (error) {
+    /* eslint-disable no-console */
     console.error("Error processing the login request:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }
 
@@ -52,16 +65,26 @@ export async function GET(request: NextRequest) {
       });
 
       if (!user) {
-        return NextResponse.json({ message: "User not found" }, { status: 404 });
+        return NextResponse.json(
+          { message: "User not found" },
+          { status: 404 }
+        );
       }
 
       return NextResponse.json(user, { status: 200 });
     } catch (dbError) {
+      /* eslint-disable no-console */
       console.error("Error fetching user from the database:", dbError);
+
       return NextResponse.json({ error: "Database error" }, { status: 500 });
     }
   } catch (error) {
+    /* eslint-disable no-console */
     console.error("Error fetching user details:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
   }
 }

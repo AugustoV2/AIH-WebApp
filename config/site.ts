@@ -14,15 +14,17 @@ export const siteConfig = {
     },
     {
       label: "Logout",
-      href: "#",  // Use "#" as a placeholder href
+      href: "#", // Use "#" as a placeholder href
       onClick: (event: React.MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault();  // Prevent the default anchor behavior
-        
+        event.preventDefault(); // Prevent the default anchor behavior
+
         // Show confirmation message before logout
-        const confirmLogout = window.confirm("Are you sure you want to logout?");
-        
+        const confirmLogout = window.confirm(
+          "Are you sure you want to logout?",
+        );
+
         if (confirmLogout) {
-          localStorage.removeItem("sihmail");  // Remove the item from localStorage
+          localStorage.removeItem("sihmail"); // Remove the item from localStorage
 
           // Redirect to login page after logout
           window.location.href = "./login";
