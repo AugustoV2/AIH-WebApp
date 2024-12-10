@@ -87,20 +87,15 @@ const TimelineGraph = () => {
           {schedule.map((day, index) => (
             <div
               key={index}
-              className={`mb-6 pl-1 relative flex items-start ${
-                selectedDateIndex === index
+              className={`mb-6 pl-1 relative flex items-start ${selectedDateIndex === index
                   ? `rounded-md ${pastelColors[index % pastelColors.length]}`
                   : ""
-              }`}
+                }`}
             >
               {/* Date Label */}
               <div className="flex items-center mb-2">
                 <FaRegCalendarAlt
-                  className={`text-2xl ${
-                    selectedDateIndex === index
-                      ? "text-blue-600"
-                      : "text-gray-500"
-                  }`}
+                  className={`text-2xl ${selectedDateIndex === index ? "text-blue-600" : "text-gray-500"}`}
                 />
                 <button
                   type="button"
@@ -108,14 +103,9 @@ const TimelineGraph = () => {
                   onClick={() => handleSelectDate(index)}
                   aria-label={`Select date ${new Date(day.date).toLocaleDateString()}`}
                 />
-                <h3
-                  className={`ml-3 font-bold text-gray-800 text-lg cursor-pointer ${
-                    selectedDateIndex === index ? "text-blue-600" : ""
-                  }`}
+                <button
+                  className={`ml-3 font-bold text-gray-800 text-lg ${selectedDateIndex === index ? "text-blue-600" : ""}`}
                   onClick={() => handleSelectDate(index)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === "Enter" && handleSelectDate(index)}
                   aria-label={`View events for ${new Date(day.date).toLocaleDateString()}`}
                 >
                   {new Date(day.date).toLocaleDateString("en-US", {
@@ -123,8 +113,9 @@ const TimelineGraph = () => {
                     day: "numeric",
                     year: "numeric",
                   })}
-                </h3>
+                </button>
               </div>
+
 
               {/* Display Schedule when selected */}
               {selectedDateIndex === index && (
