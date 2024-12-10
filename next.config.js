@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["envs.sh"], // Allow images from this domain
+    domains: ["envs.sh"], 
   },
 };
 
