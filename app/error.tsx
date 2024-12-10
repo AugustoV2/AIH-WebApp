@@ -10,7 +10,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
+    // Log the error to an error reporting serv
     /* eslint-disable no-console */
     console.error(error);
   }, [error]);
@@ -24,7 +24,7 @@ export default function Error({
           () => reset()
         }
       >
-        Try again
+        Retry
       </button>
     </div>
   );

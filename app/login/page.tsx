@@ -168,13 +168,7 @@ export default function App() {
               >
                 Submit
               </Button>
-              <Button
-                type="reset"
-                variant="flat"
-                className="w-full sm:w-auto bg-black text-white"
-              >
-                Reset
-              </Button>
+              
             </div>
           </Form>
         </div>
