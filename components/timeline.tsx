@@ -72,7 +72,7 @@ const TimelineGraph = () => {
 
   return (
     <div className="flex flex-col items-center p-4">
-      <h2 className="text-4xl font-bold mt-8 mb-8 text-gray-900">Timeline of Events</h2>
+      <h2 className="text-4xl font-bold mt-8 mb-8 text-gray-900">Programme Schedules</h2>
       <div className="relative w-full max-w-4xl">
         {/* Vertical Timeline */}
         <div className="border-l-4 border-gray-300 relative">
