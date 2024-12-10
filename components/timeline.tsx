@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
@@ -78,44 +79,45 @@ const TimelineGraph = () => {
 
   return (
     <div className="flex flex-col items-center p-4">
-      <h2 className="text-4xl font-bold mt-8 mb-8 text-gray-900">
-        Programme Schedules
-      </h2>
+      <h2 className="text-4xl font-bold mt-8 mb-8 text-gray-900">Programme Schedules</h2>
       <div className="relative w-full max-w-4xl">
         {/* Vertical Timeline */}
         <div className="border-l-4 border-gray-300 relative">
           {schedule.map((day, index) => (
             <div
               key={index}
-              className={`mb-6 pl-1 relative flex items-start ${selectedDateIndex === index
+              className={`mb-6 pl-1 relative flex items-start ${
+                selectedDateIndex === index
                   ? `rounded-md ${pastelColors[index % pastelColors.length]}`
                   : ""
-                }`}
+              }`}
             >
               {/* Date Label */}
               <div className="flex items-center mb-2">
                 <FaRegCalendarAlt
-                  className={`text-2xl ${selectedDateIndex === index ? "text-blue-600" : "text-gray-500"}`}
+                  className={`text-2xl ${
+                    selectedDateIndex === index ? "text-blue-600" : "text-gray-500"
+                  }`}
                 />
-                <button
-                  type="button"
-                  className="h-4 w-4 cursor-pointer"
+                <div
+                  className={`h-4 w-4 ${
+                    selectedDateIndex === index ? "bg-blue-600" : "bg-gray-400"
+                  } rounded-full cursor-pointer ml-3`}
                   onClick={() => handleSelectDate(index)}
-                  aria-label={`Select date ${new Date(day.date).toLocaleDateString()}`}
-                />
-                <button
-                  className={`ml-3 font-bold text-gray-800 text-lg ${selectedDateIndex === index ? "text-blue-600" : ""}`}
+                ></div>
+                <h3
+                  className={`ml-3 font-bold text-gray-800 text-lg cursor-pointer ${
+                    selectedDateIndex === index ? "text-blue-600" : ""
+                  }`}
                   onClick={() => handleSelectDate(index)}
-                  aria-label={`View events for ${new Date(day.date).toLocaleDateString()}`}
                 >
                   {new Date(day.date).toLocaleDateString("en-US", {
                     month: "long",
                     day: "numeric",
                     year: "numeric",
                   })}
-                </button>
+                </h3>
               </div>
-
 
               {/* Display Schedule when selected */}
               {selectedDateIndex === index && (

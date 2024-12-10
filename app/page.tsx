@@ -60,11 +60,11 @@ const MainPage = () => {
 
   return (
     <>
+          {/* <Footer /> */}
       <Mainpage />
       <Timeline />
       <GoogleMap />
       {/* <Contactus /> */}
-      <Footer />
     </>
   );
 };
