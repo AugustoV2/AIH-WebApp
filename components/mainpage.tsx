@@ -58,12 +58,22 @@ const mainpage = () => {
     <>
       <Navbar />
       <section className="lg:py-16 ">
+      <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
+            <Image
+              src="https://envs.sh/1rN.png"
+              alt="College Image"
+              width={350}
+              height={350}
+              className=" object-cover"
+              loading="lazy"
+            />
+          </div>
         <div className="grid grid-cols-1 sm:grid-cols-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="col-span-1 sm:col-span-7 place-self-center text-center sm:text-left justify-self-start px-6 sm:px-12"
+            className="col-span-1 sm:col-span-7 place-self-center text-justify sm:text-left justify-self-start px-6 sm:px-12"
           >
             <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-red-600">
@@ -73,7 +83,7 @@ const mainpage = () => {
               <br />
               <TypeAnimation
                 className="text-black font-semibold"
-                sequence={["To AJCE ", 10000]}
+                sequence={["To Amal Jyothi ", 10000]}
                 wrapper="span"
                 speed={10}
                 repeat={Infinity}
@@ -87,16 +97,7 @@ const mainpage = () => {
               innovation and creativity.
             </p>
           </motion.div>
-          <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
-            <Image
-              src="https://envs.sh/1rN.png"
-              alt="College Image"
-              width={350}
-              height={350}
-              className="shadow-xl object-cover"
-              loading="lazy"
-            />
-          </div>
+          
         </div>
       </section>
 
@@ -134,7 +135,7 @@ const mainpage = () => {
               onClick={() => openMapModal("https://envs.sh/1UZ.jpg")}
               loading="lazy"
             />
-            <span className="text-black mt-2">Map 1</span>
+            <span className="text-black mt-2">College Map</span>
           </div>
           <div className="flex flex-col items-center">
             <Image
@@ -146,7 +147,7 @@ const mainpage = () => {
               onClick={() => openMapModal("https://envs.sh/1U5.jpg")}
               loading="lazy"
             />
-            <span className="text-black mt-2">Map 2</span>
+            <span className="text-black mt-2">Route Map</span>
           </div>
         </div>
       </section>

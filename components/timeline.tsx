@@ -1,11 +1,20 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const TimelineGraph = () => {
   const [selectedDateIndex, setSelectedDateIndex] = useState<number | null>(null);
 
-  // Full schedule from the provided PDF
+  const pastelColors = [
+    "bg-pastel-blue",
+    "bg-pastel-green",
+    "bg-pastel-yellow",
+    "bg-pastel-pink",
+    "bg-pastel-purple",
+    "bg-pastel-orange",
+  ];
+
   const schedule = [
     {
       date: "2024-12-10",
@@ -56,7 +65,6 @@ const TimelineGraph = () => {
     },
   ];
 
-  
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
     const index = schedule.findIndex((event) => event.date === today);
@@ -80,15 +88,22 @@ const TimelineGraph = () => {
             <div
               key={index}
               className={`mb-6 pl-1 relative flex items-start ${
-                selectedDateIndex === index ? "bg-gray-100 p-4 rounded-md" : ""
+                selectedDateIndex === index
+                  ? `rounded-md ${pastelColors[index % pastelColors.length]}`
+                  : ""
               }`}
             >
               {/* Date Label */}
               <div className="flex items-center mb-2">
+                <FaRegCalendarAlt
+                  className={`text-2xl ${
+                    selectedDateIndex === index ? "text-blue-600" : "text-gray-500"
+                  }`}
+                />
                 <div
                   className={`h-4 w-4 ${
                     selectedDateIndex === index ? "bg-blue-600" : "bg-gray-400"
-                  } rounded-full cursor-pointer`}
+                  } rounded-full cursor-pointer ml-3`}
                   onClick={() => handleSelectDate(index)}
                 ></div>
                 <h3
