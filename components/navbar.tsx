@@ -102,7 +102,7 @@ export const Navbar = () => {
         {siteConfig.navItems.map((item) => (
           <NavbarMenuItem
             key={item.href}
-            color="default" // Added the required color property
+            color="black"
             className={clsx(
               "text-black transition-all duration-300 hover:text-primary hover:font-medium",
               item.label === "Home" || item.label === "Contact Us"
