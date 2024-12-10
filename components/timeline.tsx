@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
@@ -86,29 +85,19 @@ const TimelineGraph = () => {
           {schedule.map((day, index) => (
             <div
               key={index}
-              className={`mb-6 pl-1 relative flex items-start ${
-                selectedDateIndex === index
-                  ? `rounded-md ${pastelColors[index % pastelColors.length]}`
-                  : ""
-              }`}
+              className={`mb-6 pl-1 relative flex items-start ${selectedDateIndex === index ? `rounded-md ${pastelColors[index % pastelColors.length]}` : ""}`}
             >
               {/* Date Label */}
               <div className="flex items-center mb-2">
                 <FaRegCalendarAlt
-                  className={`text-2xl ${
-                    selectedDateIndex === index ? "text-blue-600" : "text-gray-500"
-                  }`}
+                  className={`text-2xl ${selectedDateIndex === index ? "text-blue-600" : "text-gray-500"}`}
                 />
                 <div
-                  className={`h-4 w-4 ${
-                    selectedDateIndex === index ? "bg-blue-600" : "bg-gray-400"
-                  } rounded-full cursor-pointer ml-3`}
+                  className={`h-4 w-4 ${selectedDateIndex === index ? "bg-blue-600" : "bg-gray-400"} rounded-full cursor-pointer ml-3`}
                   onClick={() => handleSelectDate(index)}
                 ></div>
                 <h3
-                  className={`ml-3 font-bold text-gray-800 text-lg cursor-pointer ${
-                    selectedDateIndex === index ? "text-blue-600" : ""
-                  }`}
+                  className={`ml-3 font-bold text-gray-800 text-lg cursor-pointer ${selectedDateIndex === index ? "text-blue-600" : ""}`}
                   onClick={() => handleSelectDate(index)}
                 >
                   {new Date(day.date).toLocaleDateString("en-US", {
