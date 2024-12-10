@@ -15,12 +15,15 @@ import {
 import { Navbar } from "@/components/navbar";
 import { QRCode } from 'react-qrcode-logo'; 
 import { useRouter } from 'next/navigation';
+import Swal from 'sweetalert2';
 
 const Profile = () => {
    
     const [activeModal, setActiveModal] = useState<number | null>(null);
     const [userDetails, setUserDetails] = useState<any>(null);
     const router = useRouter();
+
+    
 
   
     useEffect(() => {
@@ -180,6 +183,30 @@ const Profile = () => {
                     </ModalContent>
                 </Modal>
             ))}
+
+            <div className="flex justify-center mt-8">
+                <Button
+                    color="danger"
+                    className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    onPress={() => {
+                        Swal.fire({
+                            title: "Are you sure?",
+                            text: "Do you want to logout?",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonText: "Yes, logout",
+                            cancelButtonText: "Cancel",
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                              localStorage.removeItem("sihmail"); 
+                              router.push("/login"); 
+                            }
+                          });
+                    }}
+                >
+                    Logout
+                </Button>
+            </div>
 
             
             <footer className="text-center mt-16 border-t-2 pt-6 border-gray-300">

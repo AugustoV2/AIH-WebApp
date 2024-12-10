@@ -6,6 +6,7 @@ import Mainpage from '../components/mainpage';
 import GoogleMap from '@/components/map';
 import Timeline from '@/components/timeline';
 import Contactus from './contactus/page';
+import Footer from '@/components/footer';
 
 const MainPage = () => {
   const router = useRouter();
@@ -66,6 +67,7 @@ const MainPage = () => {
       <Timeline />
       <GoogleMap />
       {/* <Contactus /> */}
+      <Footer />
     </>
   );
 };

@@ -58,11 +58,12 @@ export const Navbar = () => {
               src="https://envs.sh/1rN.png"
               alt="SIH-2024"
               className="w-32 h-14 rounded-full"
-            /><img
+            />
+            {/* <img
               src="https://envs.sh/1mr.png"
               alt="makerhub-iedc"
               className="w-32 h-12 rounded-full"
-            />
+            /> */}
             {/* <p className="font-bold text-inherit !text-black text-xl md:text-2xl">AJCE X SIH</p> */}
           </NextLink>
         </NavbarBrand>

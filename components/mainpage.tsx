@@ -1,13 +1,13 @@
-'use client'
-import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
 import Image from "next/image";
 import { Navbar } from "@/components/navbar";
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
-import Modal from 'react-modal';
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import Modal from "react-modal";
 
 const mainpage = () => {
   const [username, setUsername] = useState("");
@@ -15,32 +15,28 @@ const mainpage = () => {
   const [mapImage, setMapImage] = useState("");
   const router = useRouter();
 
-
   const openMapModal = (imageUrl: string) => {
     setMapImage(imageUrl);
     setModalIsOpen(true);
   };
-
 
   const closeMapModal = () => {
     setModalIsOpen(false);
     setMapImage("");
   };
 
-
   useEffect(() => {
     if (modalIsOpen) {
-      document.body.style.overflow = 'hidden';
-      document.body.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = "hidden";
+      document.body.setAttribute("aria-hidden", "true");
     } else {
-      document.body.style.overflow = '';
-      document.body.removeAttribute('aria-hidden');
+      document.body.style.overflow = "";
+      document.body.removeAttribute("aria-hidden");
     }
 
-
     return () => {
-      document.body.style.overflow = '';
-      document.body.removeAttribute('aria-hidden');
+      document.body.style.overflow = "";
+      document.body.removeAttribute("aria-hidden");
     };
   }, [modalIsOpen]);
 
@@ -77,18 +73,18 @@ const mainpage = () => {
               <br />
               <TypeAnimation
                 className="text-black font-semibold"
-                sequence={[
-                  "To AJCE ",
-                  10000,
-                ]}
+                sequence={["To AJCE ", 10000]}
                 wrapper="span"
                 speed={10}
                 repeat={Infinity}
               />
             </h1>
             <p className="text-black text-base sm:text-lg mb-6 lg:text-xl leading-relaxed">
-              NC044 - Amal Jyothi College of Engineering: SIH Finale 2024
-              The Smart India Hackathon 2024 Finale is a prestigious event where shortlisted teams compete to solve real-world challenges through innovation and creativity.
+              <b className="size-11"> NC044</b> <br />
+              Amal Jyothi College of Engineering: SIH Finale 2024 The Smart
+              India Hackathon 2024 Finale is a prestigious event where
+              shortlisted teams compete to solve real-world challenges through
+              innovation and creativity.
             </p>
           </motion.div>
           <div className="col-span-1 sm:col-span-5 flex justify-center sm:justify-end items-center mt-8 sm:mt-0 bg-transparent">
@@ -120,6 +116,11 @@ const mainpage = () => {
           />
         </motion.div>
       </section>
+      <div className="flex justify-center items-center ">
+        <p className="text-black text-2xl sm:text-3xl lg:text-4xl font-bold leading-relaxed">
+          Host Institute
+        </p>
+      </div>
 
       <section className="py-16 overflow-x-auto px-4">
         <div className="flex gap-8 min-w-max">
@@ -150,9 +151,6 @@ const mainpage = () => {
         </div>
       </section>
 
-
-
-
       {modalIsOpen && (
         <div className="modal-overlay fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
           <div className="modal-content bg-white p-6 rounded-lg shadow-lg w-full h-full max-w-full max-h-full overflow-auto flex justify-center items-center">
@@ -179,12 +177,8 @@ const mainpage = () => {
                 </div>
               </div>
             </div>
-            
           </div>
-          
         </div>
-
-        
       )}
     </>
   );
