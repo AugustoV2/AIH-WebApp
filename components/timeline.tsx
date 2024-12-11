@@ -38,6 +38,8 @@ const TimelineGraph = () => {
         "2:00 PM - 4:00 PM: Hackathon Continues",
         "4:00 PM - 5:00 PM: Role Play of Entrepreneurship",
         "6:00 PM - 8:00 PM: Second Round of Mentoring Session",
+        "8:00 PM - 9:00 PM: Dinner",
+        "9:00 PM - 11:00 PM: Hackathon Continues",
         "11:00 PM - 12:00 AM: Cultural Program",
       ],
     },
@@ -49,7 +51,13 @@ const TimelineGraph = () => {
         "7:00 AM - 8:00 AM: Breakfast",
         "10:00 AM - 11:00 AM: Innovation Talk",
         "11:00 AM - 11:30 AM: Tea and Snacks",
+        "11:30 PM - 1:00 PM: Hackathon Continues",
+        "1:00 PM - 2:00 PM: Lunch",
+        "2:00 PM - 5:00 PM: Hackathon Continues",
+        "5:00 PM - 6:00 PM: Tea and Snacks",
         "6:00 PM - 8:00 PM: Second Round of Evaluation",
+        "8:00 PM - 9:00 PM: Dinner",
+        "9:00 PM - 11:00 PM: Hackathon Continues",
         "11:00 PM - 12:00 AM: Cultural Program",
       ],
     },
@@ -59,8 +67,16 @@ const TimelineGraph = () => {
         "12:00 AM - 6:00 AM: Hackathon Continues",
         "6:00 AM - 7:00 AM: Yoga Session",
         "7:00 AM - 8:00 AM: Breakfast",
+        "8:00 AM - 11:00 AM: Hackathon Continues",
+        "11:00 AM - 11:30 AM: Tea and Snacks",
+        "11:30 AM - 1:00 PM: Hackathon Continues",
+        "1:00 PM - 2:00 PM: Lunch",
+        "2:00 PM - 4:00 PM: Hackathon Continues",
         "4:00 PM - 5:00 PM: Talk on Designing",
+        "5:00 PM - 6:00 PM: Tea and Snacks",
         "6:00 PM - 8:00 PM: Third Round of Mentoring Session",
+        "8:00 PM - 9:00 PM: Dinner",
+        `9:00 PM - 11:00 PM: Hackathon Continues`,
         "11:00 PM - 12:00 AM: Cultural Program",
       ],
     },
@@ -71,10 +87,15 @@ const TimelineGraph = () => {
         "6:00 AM - 7:00 AM: Yoga Session",
         "7:00 AM - 8:00 AM: Breakfast",
         "8:00 AM - 11:00 AM: Hackathon Continues",
+        "11:00 AM - 11:30 AM: Tea and Snacks",
+        "11:30 AM - 1:00 PM: Hackathon Continues",
+        "1:00 PM - 2:00 PM: Lunch",
+        "2:00 PM - 3:00 PM: Hackathon continues",
         "3:00 PM: Hackathon Stops",
         "3:00 PM - 5:00 PM: Final Round of Evaluation",
         "5:00 PM - 6:30 PM: Finalization of Results",
         "6:30 PM - 8:00 PM: Valedictory Session and Prize Distribution",
+        "8:00 PM - 9:00 PM: Dinner",
       ],
     },
     {
@@ -90,20 +111,24 @@ const TimelineGraph = () => {
     const todayIndex = schedule.findIndex((item) => item.date === today);
     return todayIndex >= 0 ? todayIndex : null;
   };
+  
   const [expandedIndex, setExpandedIndex] = useState<number | null>(
     setDefault(),
   );
 
   // Calculate progress dynamically
   const calculateProgress = () => {
-    const startDate = new Date("2024-12-10T00:00:00").getTime();
-    const endDate = new Date("2024-12-16T12:00:00").getTime();
-    const now = new Date().getTime();
+    const startDate = new Date("2024-12-10T00:00:00+05:30").getTime();
+    const endDate = new Date("2024-12-16T12:00:00+05:30").getTime();
+    const now = new Date().toLocaleString("en-US", {
+      timeZone: "Asia/Kolkata",
+    });
+    const nowIST = new Date(now).getTime();
 
-    if (now <= startDate) return 0;
-    if (now >= endDate) return 100;
+    if (nowIST <= startDate) return 0;
+    if (nowIST >= endDate) return 100;
 
-    return ((now - startDate) / (endDate - startDate)) * 100;
+    return ((nowIST - startDate) / (endDate - startDate)) * 100;
   };
 
   const handleExpand = (index: number) => {
@@ -163,7 +188,7 @@ const TimelineGraph = () => {
 
             {/* Events */}
             {expandedIndex === index && (
-              <ul className="mt-4 space-y-2">
+              <ul className="mt-4 space-y-2 transition-all transform ease-in-out">
                 {day.events.map((event, i) => (
                   <li key={i} className="text-gray-700 flex items-start">
                     <span className="w-2 h-2 mt-2 mr-3 bg-blue-400 rounded-full"></span>

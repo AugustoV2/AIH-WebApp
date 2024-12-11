@@ -62,7 +62,7 @@ const MainPage = () => {
       {/* <Footer /> */}
       <Mainpage />
       <Timeline />
-      <section className="flex flex-col lg:flex-row items-center justify-center gap-6 py-16 px-6 lg:px-10">
+      <section className="flex flex-col lg:flex-row items-center justify-center gap-6 py-16 px-6 lg:px-24">
         <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
           <div className="w-full flex flex-col justify-center items-center">
             <Image
