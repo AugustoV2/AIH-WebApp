@@ -64,6 +64,7 @@ const MainPage = () => {
       <Mainpage />
       <Timeline />
       <GoogleMap />
+      <Footer />
       {/* <Contactus /> */}
     </>
   );

@@ -40,36 +40,41 @@ export const Navbar = () => {
     <NextUINavbar
       maxWidth="xl"
       position="sticky"
-      className="bg-white shadow-lg border-b border-gray-300"
+      className="bg-white shadow-lg border-b border-gray-300 flex flex-row justify-center items-center"
     >
-      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+      {/* Logo */}
+      <NavbarContent className="">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
-          <NextLink className="flex justify-start items-center gap-1" href="/">
+          <NextLink
+            className="flex flex-row items-center justify-center gap-2"
+            href="/"
+          >
             <img
-              src="https://envs.sh/1rN.png"
+              src="https://envs.sh/1r2.png"
               alt="SIH-2024"
-              className="w-32 h-14 rounded-full"
+              className="w- h-14 rounded-full"
             />
+            <span className="text-xl font-bold">SIH&apos;24</span>
           </NextLink>
         </NavbarBrand>
       </NavbarContent>
 
-      {/* Mobile Toggle Button */}
-      <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
+      {/* Profile and Mobile Toggle Button */}
+      <NavbarContent
+        className="lg:hidden flex flex-row justify-center items-center gap-4"
+        style={{ flexGrow: 0 }}
+      >
+        <NavbarItem className="flex gap-2">
+          <Avatar onClick={() => (window.location.href = "/profile")}>
+            <AvatarImage src={"/defpic1.jpg"} alt="profile" />
+            <AvatarFallback> </AvatarFallback>
+          </Avatar>
+        </NavbarItem>
         <NavbarMenuToggle className="text-black" />
       </NavbarContent>
 
-      <NavbarContent className="flex basis-1/5 sm:basis-full justify-end">
-        <NavbarItem className="flex gap-2">
-          <Avatar onClick={() => (window.location.href = "/profile")}>
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-        </NavbarItem>
-      </NavbarContent>
-
       {/* Desktop Menu */}
-      <ul className="hidden lg:flex gap-4 justify-start ml-2">
+      <ul className="hidden lg:flex flex-row justify-center items-center gap-4 ml-2">
         {siteConfig.navItems.map((item) => (
           <NavbarItem key={item.href}>
             {item.label === "Logout" ? (
@@ -95,6 +100,16 @@ export const Navbar = () => {
             )}
           </NavbarItem>
         ))}
+
+        {/* Desktop Profile */}
+        <NavbarContent className="hidden sm:flex sm:basis-full justify-center sm:justify-end">
+          <NavbarItem className="flex gap-2">
+            <Avatar onClick={() => (window.location.href = "/profile")}>
+              <AvatarImage src={"/defpic.jpg"} alt=" " />
+              <AvatarFallback> </AvatarFallback>
+            </Avatar>
+          </NavbarItem>
+        </NavbarContent>
       </ul>
 
       {/* Mobile Menu */}
@@ -105,14 +120,19 @@ export const Navbar = () => {
             className={clsx(
               "text-black transition-all duration-300 hover:text-primary hover:font-medium",
               item.label === "Home" || item.label === "Contact Us"
-                ? "border-b-2 border-black rounded-sm p-2 hover:bg-gray-100"
+                ? "border-b-2 border-black rounded-sm p-2 hover:bg-gray-100 hover:text-black"
                 : "p-3",
             )}
           >
             {item.label === "Logout" ? (
-              <button onClick={handleLogout} className="text-base">
-                {item.label}
-              </button>
+              <div className="flex justify-center items-center">
+                <button
+                  onClick={handleLogout}
+                  className="text-base bg-red-500 p-2 rounded-md text-white"
+                >
+                  {item.label}
+                </button>
+              </div>
             ) : (
               <NextLink href={item.href}>
                 <span className="text-base">{item.label}</span>

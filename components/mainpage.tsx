@@ -7,7 +7,6 @@ import Image from "next/image";
 import { Navbar } from "@/components/navbar";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import Footer from "./footer";
 
 const MainPage = () => {
   const [username, setUsername] = useState("");
@@ -57,8 +56,7 @@ const MainPage = () => {
   return (
     <>
       <Navbar />
-      <Footer />
-      <section className="lg:py-16 ">
+      <section className="flex flex-col gap-6 lg:py-16">
         <div className="col-span-1 sm:col-span-5 flex justify-center items-center mt-8 sm:mt-0 bg-transparent">
           <Image
             src="https://envs.sh/1rN.png"
@@ -76,36 +74,38 @@ const MainPage = () => {
             transition={{ duration: 1 }}
             className="col-span-1 sm:col-span-7 place-self-center text-justify sm:text-left justify-self-start px-6 sm:px-12"
           >
-            <h1 className="text-white mb-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-red-600">
+            <h1 className="text-white mb-4 text-3xl md:text-4xl lg:text-6xl font-extrabold leading-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-red-500">
                 Welcome, <br />
                 {username}
               </span>
               <br />
               <TypeAnimation
                 className="text-black font-semibold"
-                sequence={["To Amal Jyothi ", 10000]}
+                sequence={["To Amal Jyothi ", 3000, "Hack for India", 3000]}
                 wrapper="span"
                 speed={10}
                 repeat={Infinity}
               />
             </h1>
             <p className="text-black text-base sm:text-lg mb-6 lg:text-xl leading-relaxed">
-              <b className="size-11"> NC044</b> <br />
-              Amal Jyothi College of Engineering: SIH Finale 2024 The Smart
-              India Hackathon 2024 Finale is a prestigious event where
-              shortlisted teams compete to solve real-world challenges through
-              innovation and creativity.
+              Amal Jyothi College of Engineering is proud to host the Smart
+              India Hackathon 2024 Hardware Edition. This prestigious event
+              brings together the brightest minds from across the country to
+              solve real-world hardware challenges through innovation and
+              creativity. Participants will have the opportunity to work on
+              cutting-edge technologies and present their solutions to industry
+              experts.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-16 flex justify-center">
+      <section className="py-6 flex justify-center">
         <motion.div
           initial={{ opacity: 0, rotate: 45 }}
           animate={{ opacity: 1, rotate: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1 }}
         >
           <Image
             src="https://envs.sh/1r2.png"
@@ -117,38 +117,39 @@ const MainPage = () => {
           />
         </motion.div>
       </section>
-      <div className="flex justify-center items-center ">
-        <p className="text-black text-2xl sm:text-3xl lg:text-4xl font-bold leading-relaxed">
+      <div className="flex flex-col justify-center items-center text-center ">
+        <p className="text-black text-2xl lg:text-3xl font-bold leading-relaxed">
           Host Institute
         </p>
+        <span className="text-gray-400 text-base text-center">
+          Amal Jyothi College Of Engineering, kanjirappally
+        </span>
       </div>
 
-      <section className="py-16 overflow-x-auto px-4">
-        <div className="flex gap-8 min-w-max">
-          <div className="flex flex-col items-center">
-            <Image
-              src="https://envs.sh/1UZ.jpg"
-              alt="Map Image 1"
-              width={200}
-              height={200}
-              className="cursor-pointer shadow-lg hover:scale-105 transition-all"
-              onClick={() => openMapModal("https://envs.sh/1UZ.jpg")}
-              loading="lazy"
-            />
-            <span className="text-black mt-2">College Map</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <Image
-              src="https://envs.sh/1U5.jpg"
-              alt="Map Image 2"
-              width={200}
-              height={200}
-              className="cursor-pointer shadow-lg hover:scale-105 transition-all"
-              onClick={() => openMapModal("https://envs.sh/1U5.jpg")}
-              loading="lazy"
-            />
-            <span className="text-black mt-2">Route Map</span>
-          </div>
+      <section className="flex flex-col justify-center items-center py-16 px-6">
+        <div className="flex flex-col items-center">
+          <Image
+            src="https://envs.sh/1UZ.jpg"
+            alt="Map Image 1"
+            width={200}
+            height={200}
+            className="cursor-pointer shadow-lg hover:scale-105 transition-all"
+            onClick={() => openMapModal("https://envs.sh/1UZ.jpg")}
+            loading="lazy"
+          />
+          <span className="text-black mt-2">College Map</span>
+        </div>
+        <div className="flex flex-col items-center">
+          <Image
+            src="https://envs.sh/1U5.jpg"
+            alt="Map Image 2"
+            width={200}
+            height={200}
+            className="cursor-pointer shadow-lg hover:scale-105 transition-all"
+            onClick={() => openMapModal("https://envs.sh/1U5.jpg")}
+            loading="lazy"
+          />
+          <span className="text-black mt-2">Route Map</span>
         </div>
       </section>
 

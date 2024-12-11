@@ -91,25 +91,29 @@ const Profile = () => {
     <>
       <Navbar />
       <div className="container mx-auto p-6 font-sans min-h-screen flex flex-col">
-        <header className="flex items-center justify-between mb-10 border-b-2 pb-6 border-gray-300">
-          <div className="flex items-center">
+        <header className="flex flex-row items-center justify-between mb-10 border-b-2 pb-6 border-gray-300">
+          <div className="flex flex-row items-center justify-between gap-6">
             <Image
-              src="https://envs.sh/1gc.jpg"
+              src={"/defpic.jpg"}
               alt="Profile Image"
               width={100}
               height={100}
-              className="rounded-full mr-6 border-4 border-blue-500 p-1 shadow-lg hover:scale-110 transition-transform duration-300"
+              className="rounded-full border-4 border-blue-500 p-1 shadow-lg hover:scale-110 transition-transform duration-300"
             />
             <div className="text-left">
-              <h1 className="text-3xl font-bold text-blue-800 hover:text-blue-600 transition-colors duration-300">
-                {userDetails ? userDetails.name : "Loading..."}
-              </h1>
-              <p className="text-gray-700 text-lg">
-                {userDetails ? userDetails.mailId : "Loading..."}
-              </p>
-              <p className="text-gray-700 text-lg">
-                {userDetails ? userDetails.mobileNumber : "Loading..."}
-              </p>
+              {userDetails ? (
+                <>
+                  <h1 className="text-3xl font-bold text-blue-800 hover:text-blue-600 transition-colors duration-300">
+                    {userDetails.name}
+                  </h1>
+                  <p className="text-gray-700 text-lg">{userDetails.mailId}</p>
+                  <p className="text-gray-700 text-lg">
+                    {userDetails.mobileNumber}
+                  </p>
+                </>
+              ) : (
+                <div className="animate-spin h-8 w-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
+              )}
             </div>
           </div>
         </header>
