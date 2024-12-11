@@ -1,19 +1,18 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-
-import { Spinner } from "@nextui-org/react"; // Import Spinner
+import { Spinner } from "@nextui-org/react";
 import Mainpage from "../components/mainpage";
 import GoogleMap from "@/components/map";
 import Timeline from "@/components/timeline";
 import Footer from "@/components/footer";
+import Image from "next/image";
 
 const MainPage = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if 'sihmail' exists in localStorage
     const email = localStorage.getItem("sihmail");
 
     if (!email) {
@@ -60,9 +59,41 @@ const MainPage = () => {
 
   return (
     <>
-          {/* <Footer /> */}
+      {/* <Footer /> */}
       <Mainpage />
       <Timeline />
+      <section className="flex flex-col lg:flex-row items-center justify-center gap-6 py-16 px-6 lg:px-10">
+        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
+          <div className="w-full flex flex-col justify-center items-center">
+            <Image
+              src="https://envs.sh/1UZ.jpg"
+              alt="Map Image 1"
+              width={350}
+              height={350}
+              className="shadow-lg hover:scale-105 transition-all w-full rounded-2xl"
+              loading="lazy"
+              quality={100}
+            />
+            <span className="text-black mt-2 block text-center">
+              College Map
+            </span>
+          </div>
+        </div>
+        <div className="w-full lg:w-1/2 flex flex-col justify-center items-center">
+          <div className="w-full flex flex-col justify-center items-center">
+            <Image
+              src="https://envs.sh/1U5.jpg"
+              alt="Map Image 2"
+              width={350}
+              height={350}
+              className="shadow-lg hover:scale-105 transition-all w-full rounded-2xl"
+              loading="lazy"
+              quality={100}
+            />
+            <span className="text-black mt-2 block text-center">Route Map</span>
+          </div>
+        </div>
+      </section>{" "}
       <GoogleMap />
       <Footer />
       {/* <Contactus /> */}

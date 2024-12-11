@@ -1,132 +1,180 @@
 import React, { useState, useEffect } from "react";
 import { FaRegCalendarAlt } from "react-icons/fa";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const TimelineGraph = () => {
-  const [selectedDateIndex, setSelectedDateIndex] = useState<number | null>(null);
-
-  const pastelColors = [
-    "bg-pastel-blue",
-    "bg-pastel-green",
-    "bg-pastel-yellow",
-    "bg-pastel-pink",
-    "bg-pastel-purple",
-    "bg-pastel-orange",
-  ];
-
   const schedule = [
     {
       date: "2024-12-10",
-      events: [
-        "Registration of Teams",
-        "Equipment and consumable rechecks",
-        "Audio/Video setup testing",
-      ],
+      events: ["Registration of Teams", "Lunch and Dinner for teams"],
     },
     {
       date: "2024-12-11",
       events: [
-        "8:00 AM: Inauguration of Grand Finale SIH 2024",
+        "7:00 AM - 7:30 AM: Breakfast",
+        "8:00 AM: Local Inauguration at Nodal Center",
+        "9:00 AM - 9:30 AM: Central Inauguration (Tentative)",
         "9:30 AM: Hackathon for Hardware Edition goes Live",
+        "10:30 AM - 11:30 AM: Tea and Snacks",
         "11:30 AM - 1:00 PM: First Round of Mentoring Session",
+        "1:00 PM - 2:00 PM: Lunch",
+        "2:00 PM - 4:30 PM: Hackathon Continues",
+        "4:30 PM - 5:00 PM: Tea and Snacks",
         "6:30 PM - 8:00 PM: First Round of Evaluation",
+        "9:00 PM - 11:30 PM: Hackathon Continues",
+        "11:30 PM - 12:00 AM: Midnight Energy Drink and Snacks",
+        "11:30 PM - 12:30 AM: Cultural Program (Karaoke/Dance/Zumba)",
       ],
     },
     {
       date: "2024-12-12",
       events: [
+        "12:30 AM - 6:00 AM: Hackathon Continues",
         "6:00 AM - 7:00 AM: Yoga Session",
-        "8:00 AM - 11:00 AM: Hackathon continues",
+        "7:00 AM - 8:00 AM: Breakfast",
+        "8:00 AM - 11:00 AM: Hackathon Continues",
+        "11:00 AM - 11:30 AM: Tea and Snacks",
+        "1:00 PM - 2:00 PM: Lunch",
+        "2:00 PM - 4:00 PM: Hackathon Continues",
+        "4:00 PM - 5:00 PM: Role Play of Entrepreneurship",
         "6:00 PM - 8:00 PM: Second Round of Mentoring Session",
+        "11:00 PM - 12:00 AM: Cultural Program",
       ],
     },
     {
       date: "2024-12-13",
       events: [
+        "12:00 AM - 6:00 AM: Hackathon Continues",
+        "6:00 AM - 7:00 AM: Yoga Session",
+        "7:00 AM - 8:00 AM: Breakfast",
         "10:00 AM - 11:00 AM: Innovation Talk",
+        "11:00 AM - 11:30 AM: Tea and Snacks",
         "6:00 PM - 8:00 PM: Second Round of Evaluation",
+        "11:00 PM - 12:00 AM: Cultural Program",
       ],
     },
     {
       date: "2024-12-14",
       events: [
+        "12:00 AM - 6:00 AM: Hackathon Continues",
+        "6:00 AM - 7:00 AM: Yoga Session",
+        "7:00 AM - 8:00 AM: Breakfast",
         "4:00 PM - 5:00 PM: Talk on Designing",
         "6:00 PM - 8:00 PM: Third Round of Mentoring Session",
+        "11:00 PM - 12:00 AM: Cultural Program",
       ],
     },
     {
       date: "2024-12-15",
       events: [
-        "8:00 AM - 3:00 PM: Hackathon continues",
+        "12:00 AM - 6:00 AM: Hackathon Continues",
+        "6:00 AM - 7:00 AM: Yoga Session",
+        "7:00 AM - 8:00 AM: Breakfast",
+        "8:00 AM - 11:00 AM: Hackathon Continues",
+        "3:00 PM: Hackathon Stops",
         "3:00 PM - 5:00 PM: Final Round of Evaluation",
+        "5:00 PM - 6:30 PM: Finalization of Results",
         "6:30 PM - 8:00 PM: Valedictory Session and Prize Distribution",
       ],
     },
+    {
+      date: "2024-12-16",
+      events: [
+        "Post Hackathon Departures (Breakfast, Tea, and Coffee provided)",
+        "Travel arrangements for students/mentors to nearest station",
+      ],
+    },
   ];
-
-  useEffect(() => {
+  const setDefault = () => {
     const today = new Date().toISOString().split("T")[0];
-    const index = schedule.findIndex((event) => event.date === today);
+    const todayIndex = schedule.findIndex((item) => item.date === today);
+    return todayIndex >= 0 ? todayIndex : null;
+  };
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(
+    setDefault(),
+  );
 
-    if (index >= 0 && selectedDateIndex === null) {
-      setSelectedDateIndex(index);
-    }
-  }, [schedule, selectedDateIndex]);
+  // Calculate progress dynamically
+  const calculateProgress = () => {
+    const startDate = new Date("2024-12-10T00:00:00").getTime();
+    const endDate = new Date("2024-12-16T12:00:00").getTime();
+    const now = new Date().getTime();
 
-  const handleSelectDate = (index: number) => {
-    setSelectedDateIndex(index);
+    if (now <= startDate) return 0;
+    if (now >= endDate) return 100;
+
+    return ((now - startDate) / (endDate - startDate)) * 100;
+  };
+
+  const handleExpand = (index: number) => {
+    setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <h2 className="text-4xl font-bold mt-8 mb-8 text-gray-900">Programme Schedules</h2>
-      <div className="relative w-full max-w-4xl">
-        {/* Vertical Timeline */}
-        <div className="border-l-4 border-gray-300 relative">
-          {schedule.map((day, index) => (
-            <div
-              key={index}
-              className={`mb-6 pl-1 relative flex items-start ${selectedDateIndex === index ? `rounded-md ${pastelColors[index % pastelColors.length]}` : ""}`}
-            >
-              {/* Date Label */}
-              <div className="flex items-center mb-2">
-                <FaRegCalendarAlt
-                  className={`text-2xl ${selectedDateIndex === index ? "text-blue-600" : "text-gray-500"}`}
-                />
-                <button
-                  type="button"
-                  className="h-4 w-4 cursor-pointer"
-                  onClick={() => handleSelectDate(index)}
-                  aria-label={`Select date ${new Date(day.date).toLocaleDateString()}`}
-                />
-                <button
-                  className={`ml-3 font-bold text-gray-800 text-lg ${selectedDateIndex === index ? "text-blue-600" : ""}`}
-                  onClick={() => handleSelectDate(index)}
-                  aria-label={`View events for ${new Date(day.date).toLocaleDateString()}`}
-                >
-                  {new Date(day.date).toLocaleDateString("en-US", {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </button>
-              </div>
+    <div className="py-8 px-6 lg:px-16 flex flex-col items-center ">
+      <h2 className="text-4xl font-bold text-gray-900 text-center mb-8">
+        Timeline
+      </h2>
 
-              {/* Display Schedule when selected */}
-              {selectedDateIndex === index && (
-                <div className="ml-6">
-                  <ul className="text-gray-700">
-                    {day.events.map((event, idx) => (
-                      <li key={idx} className="mb-2">
-                        - {event}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          ))}
+      {/* Progress Bar */}
+      <div className="w-full max-w-4xl mb-8">
+        <div className="w-full bg-gray-300 rounded-full h-3">
+          <div
+            className="h-3 bg-gradient-to-br from-blue-400 to-green-500 rounded-full transition-all duration-500"
+            style={{ width: `${calculateProgress()}%` }}
+          ></div>
+        </div>
+        <div className="flex justify-between text-sm text-gray-700 mt-1">
+          <span>Start: Dec 10</span>
+          <span>End: Dec 16, 12:00 PM</span>
         </div>
       </div>
+
+      {/* Timeline */}
+      <ol className="relative border-s-4 border-blue-200 w-full max-w-4xl">
+        {schedule.map((day, index) => (
+          <li key={index} className="mb-10 ms-6">
+            {/* Circular Icon */}
+            <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white">
+              <FaRegCalendarAlt className="text-blue-600" />
+            </span>
+
+            {/* Date Header */}
+            <button
+              className="flex items-center justify-between cursor-pointer"
+              onClick={() => handleExpand(index)}
+            >
+              <h3 className="text-lg font-semibold text-gray-900">
+                {new Date(day.date).toLocaleDateString("en-US", {
+                  weekday: "long",
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </h3>
+              <span className="text-blue-600 text-xl">
+                {expandedIndex === index ? (
+                  <IoIosArrowUp />
+                ) : (
+                  <IoIosArrowDown />
+                )}
+              </span>
+            </button>
+
+            {/* Events */}
+            {expandedIndex === index && (
+              <ul className="mt-4 space-y-2">
+                {day.events.map((event, i) => (
+                  <li key={i} className="text-gray-700 flex items-start">
+                    <span className="w-2 h-2 mt-2 mr-3 bg-blue-400 rounded-full"></span>
+                    {event}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ol>
     </div>
   );
 };
